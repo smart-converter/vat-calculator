@@ -107,6 +107,99 @@
         document.getElementById('res-tax-lbl').innerText = t.tax;
         document.getElementById('res-total-lbl').innerText = t.total;
         document.getElementById('seo-box').innerHTML = t.seo;
+        <script>
+    const i18n = {
+        en: {
+            amount: "Amount:", rate: "VAT Rate (%):", mode: "Action:", add: "Add VAT", sub: "Remove VAT",
+            net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:",
+            privacy: "Privacy Policy", terms: "Terms of Use",
+            footer: "© 2026 VATCalculator.io - Global Tax Tool",
+            seo: `<h2>Professional Online VAT Calculator</h2>
+                  <p>Our <strong>VAT Calculator</strong> is a simple yet powerful tool designed for business owners, freelancers, and consumers worldwide. Whether you need to calculate value-added tax for invoices or personal shopping, we provide instant and accurate results.</p>
+                  <h2>How to calculate VAT?</h2>
+                  <p>Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain. To calculate it manually:</p>
+                  <ul>
+                    <li><strong>To add VAT:</strong> Multiply the net amount by (1 + VAT rate).</li>
+                    <li><strong>To remove VAT:</strong> Divide the gross amount by (1 + VAT rate).</li>
+                  </ul>
+                  <p>Our tool automates this process, supporting standard rates for the UK, EU, and other regions.</p>`,
+            privText: "<h2>Privacy Policy</h2><p>We do not collect personal data. We use cookies only for language settings and basic analytics.</p>",
+            termsText: "<h2>Terms of Use</h2><p>The results provided by this calculator are for informational purposes only. We are not responsible for financial errors.</p>"
+        },
+        uk: {
+            amount: "Сума:", rate: "Ставка ПДВ (%):", mode: "Операція:", add: "Нарахувати ПДВ", sub: "Вирахувати ПДВ",
+            net: "Сума без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
+            privacy: "Конфіденційність", terms: "Умови",
+            footer: "© 2026 VATCalculator.io - Ваш фінансовий інструмент",
+            seo: `<h2>Професійний калькулятор ПДВ онлайн</h2>
+                  <p>Наш <strong>калькулятор ПДВ</strong> — це надійний інструмент для підприємців, бухгалтерів та фрілансерів. Він дозволяє миттєво розрахувати суму податку на додану вартість для будь-якої операції.</p>
+                  <h2>Як розрахувати ПДВ?</h2>
+                  <p>ПДВ — це непрямий податок, який входить у вартість товарів та послуг. Наш сервіс підтримує два режими:</p>
+                  <ul>
+                    <li><strong>Нарахування ПДВ:</strong> додавання податку до чистої вартості (Net).</li>
+                    <li><strong>Виділення ПДВ:</strong> розрахунок чистої суми із загальної вартості (Gross).</li>
+                  </ul>
+                  <p>Стандартна ставка ПДВ в Україні становить 20%, але ви можете ввести будь-яке значення для розрахунків за пільговими ставками 7% або 14%.</p>`,
+            privText: "<h2>Політика конфіденційності</h2><p>Ми не збираємо ваші персональні дані. Файли cookie використовуються для збереження вибору мови.</p>",
+            termsText: "<h2>Умови використання</h2><p>Результати розрахунків мають довідковий характер. Ми не несемо відповідальності за помилки у ваших фінансових документах.</p>"
+        },
+        es: {
+            amount: "Cantidad:", rate: "Tasa de IVA (%):", mode: "Acción:", add: "Añadir IVA", sub: "Extraer IVA",
+            net: "Base Imponible:", tax: "Cuota de IVA:", total: "Total:",
+            privacy: "Privacidad", terms: "Términos",
+            footer: "© 2026 VATCalculator.io - Herramienta Fiscal Global",
+            seo: `<h2>Calculadora de IVA Profesional</h2>
+                  <p>Optimice sus finanzas con nuestra <strong>calculadora de IVA</strong>. Ideal para autónomos y empresas que necesitan resultados rápidos y precisos para sus facturas.</p>
+                  <h2>¿Cómo calcular el IVA?</h2>
+                  <p>El Impuesto sobre el Valor Añadido (IVA) es una carga fiscal sobre el consumo. Con nuestra herramienta puede:</p>
+                  <ul>
+                    <li>Calcular el precio final incluyendo el impuesto (IVA incluido).</li>
+                    <li>Obtener la base imponible a partir del precio total (desglosar IVA).</li>
+                  </ul>`,
+            privText: "<h2>Política de Privacidad</h2><p>No recopilamos datos personales. Usamos cookies para mejorar la experiencia del usuario.</p>",
+            termsText: "<h2>Términos de Uso</h2><p>Los resultados son informativos. No nos hacemos responsables de reclamaciones legales o fiscales.</p>"
+        },
+        de: {
+            amount: "Betrag:", rate: "MwSt.-Satz (%):", mode: "Aktion:", add: "MwSt. hinzufügen", sub: "MwSt. abziehen",
+            net: "Nettobetrag:", tax: "MwSt. Betrag:", total: "Gesamtbetrag:",
+            privacy: "Datenschutz", terms: "AGB",
+            footer: "© 2026 VATCalculator.io - MwSt Rechner",
+            seo: `<h2>Professioneller Mehrwertsteuer-Rechner</h2>
+                  <p>Berechnen Sie die Mehrwertsteuer (MwSt) schnell und präzise für Ihre geschäftlichen Transaktionen. Unser <strong>MwSt-Rechner</strong> unterstützt alle gängigen Sätze.</p>
+                  <h2>MwSt berechnen: So einfach geht's</h2>
+                  <p>Egal ob Sie den Bruttobetrag aus dem Netto berechnen oder die Steuer aus einer Gesamtsumme herausrechnen möchten – unser Tool liefert sofort das Ergebnis.</p>`,
+            privText: "<h2>Datenschutz</h2><p>Wir sammeln keine persönlichen Daten. Cookies dienen nur der Sprachauswahl.</p>",
+            termsText: "<h2>Nutzungsbedingungen</h2><p>Alle Berechnungen ohne Gewähr auf Richtigkeit.</p>"
+        }
+    };
+
+    let currentLang = localStorage.getItem('vat_lang') || 'en';
+
+    function changeLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('vat_lang', lang);
+        updateUI();
+    }
+
+    function updateUI() {
+        const t = i18n[currentLang] || i18n['en'];
+        document.getElementById('langSelect').value = currentLang;
+        document.getElementById('lbl-amount').innerText = t.amount;
+        document.getElementById('lbl-rate').innerText = t.rate;
+        document.getElementById('lbl-mode').innerText = t.mode;
+        document.getElementById('opt-add').innerText = t.add;
+        document.getElementById('opt-sub').innerText = t.sub;
+        document.getElementById('res-net-lbl').innerText = t.net;
+        document.getElementById('res-tax-lbl').innerText = t.tax;
+        document.getElementById('res-total-lbl').innerText = t.total;
+        document.getElementById('seo-box').innerHTML = t.seo;
+        document.getElementById('footer-text').innerText = t.footer;
+        
+        // Оновлення посилань футера
+        const links = document.querySelectorAll('.f-link');
+        links[0].innerText = t.privacy;
+        links[1].innerText = t.terms;
+        
         calculate();
     }
 
@@ -132,7 +225,18 @@
         document.getElementById('res-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
+    // Модальні вікна (за аналогією з першими сайтами)
+    function openPol(type) {
+        const t = i18n[currentLang] || i18n['en'];
+        alert(type === 'privacy' ? t.privText.replace(/<[^>]*>?/gm, '') : t.termsText.replace(/<[^>]*>?/gm, ''));
+    }
+
+    // Призначаємо функції посиланням
+    document.querySelectorAll('.f-link')[0].onclick = () => openPol('privacy');
+    document.querySelectorAll('.f-link')[1].onclick = () => openPol('terms');
+
     updateUI();
 </script>
+
 </body>
 </html>
