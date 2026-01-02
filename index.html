@@ -3,125 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator - Quick Online Tax Tool</title>
+    <title>VAT Calculator Express - Fast & Accurate Online Tax Tool</title>
     <style>
-        body { font-family: -apple-system, sans-serif; margin: 0; padding: 0; background-color: #f4f7f9; color: #2c3e50; }
-        .header { background-color: #2c3e50; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .container { max-width: 600px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); box-sizing: border-box; }
-        .lang-select { background: rgba(255,255,255,0.1); color: white; border: 1px solid white; padding: 6px; border-radius: 5px; cursor: pointer; }
-        .lang-select option { color: #333; }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #555; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; transition: border 0.3s; }
-        input:focus { border-color: #3498db; outline: none; }
-        .result-area { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 25px; border: 1px solid #edf2f7; }
-        .res-line { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 17px; }
-        .res-val { font-weight: bold; color: #2c3e50; }
-        .total-line { border-top: 2px solid #dee2e6; margin-top: 10px; padding-top: 15px; font-size: 22px; color: #2c3e50; }
-        .seo-section { margin-top: 35px; line-height: 1.7; font-size: 15px; color: #666; border-top: 1px solid #eee; padding-top: 20px; }
-        .seo-section h2 { color: #2c3e50; font-size: 20px; margin-bottom: 10px; }
-        footer { text-align: center; padding: 30px 20px; font-size: 13px; color: #888; background: #fff; border-top: 1px solid #eee; margin-top: 40px; }
-        .f-link { color: #3498db; text-decoration: none; cursor: pointer; margin: 0 12px; font-weight: 600; }
-        .f-link:hover { text-decoration: underline; }
+        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .top-header { background-color: #0056b3; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; color: white; }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 600; }
+        
+        /* Блоки мов 2х2 */
+        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; background: #fff; border-bottom: 1px solid #ddd; }
+        .lang-btn { padding: 10px; text-align: center; background: #f8f9fa; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+        .lang-btn.active { background: #0056b3; color: white; border-color: #004494; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; background: #fff; min-height: 100vh; box-sizing: border-box; }
+        .calc-section { border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fafafa; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .calc-row { display: flex; flex-direction: column; gap: 15px; }
+        .input-field { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 14px; font-weight: bold; color: #555; }
+        
+        .input-box { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; font-weight: bold; width: 100%; box-sizing: border-box; }
+        select.input-box { cursor: pointer; }
+        
+        .res-container { margin-top: 15px; padding: 15px; background: #eef6ff; border: 1px solid #0056b3; border-radius: 6px; }
+        .res-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 16px; }
+        .res-val { font-weight: bold; color: #0056b3; }
+        .res-total { font-size: 20px; border-top: 1px solid #0056b3; pt: 10px; margin-top: 5px; }
+
+        .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; border-top: 1px solid #eee; }
+        .seo-content h2 { color: #0056b3; font-size: 19px; }
+        
+        footer { border-top: 1px solid #ddd; padding: 25px 15px; text-align: center; background: #f9f9f9; font-size: 12px; }
+        .footer-link { color: #0056b3; text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: bold; }
+
+        /* Модальне вікно */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal-content { background: #fff; margin: 15% auto; padding: 20px; width: 85%; max-width: 500px; border-radius: 8px; position: relative; }
+        .close { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1 style="font-size: 20px; margin: 0; letter-spacing: 1px;">VATCalc.io</h1>
-    <select class="lang-select" onchange="changeLang(this.value)" id="langSelect">
-        <option value="en">English</option>
-        <option value="uk">Українська</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-    </select>
+<div class="top-header">
+    <h1 id="main-title">VATCalculator.io</h1>
+</div>
+
+<div class="lang-grid">
+    <div class="lang-btn" onclick="changeLang('en')" id="btn-en">English</div>
+    <div class="lang-btn" onclick="changeLang('uk')" id="btn-uk">Українська</div>
+    <div class="lang-btn" onclick="changeLang('es')" id="btn-es">Español</div>
+    <div class="lang-btn" onclick="changeLang('de')" id="btn-de">Deutsch</div>
 </div>
 
 <div class="container">
-    <div class="input-group">
-        <label id="lbl-amount">Amount:</label>
-        <input type="number" id="amount" value="1000" oninput="calculate()">
-    </div>
-    <div class="input-group">
-        <label id="lbl-rate">VAT Rate (%):</label>
-        <input type="number" id="rate" value="20" oninput="calculate()">
-    </div>
-    <div class="input-group">
-        <label id="lbl-mode">Action:</label>
-        <select id="mode" onchange="calculate()">
-            <option value="add" id="opt-add">Add VAT</option>
-            <option value="sub" id="opt-sub">Remove VAT</option>
-        </select>
+    <div class="calc-section">
+        <div class="calc-row">
+            <div class="input-field">
+                <label id="lbl-amount">Amount</label>
+                <input type="number" id="amount" class="input-box" value="1000" oninput="calculate()">
+            </div>
+            <div class="input-field">
+                <label id="lbl-rate">VAT Rate (%)</label>
+                <input type="number" id="rate" class="input-box" value="20" oninput="calculate()">
+            </div>
+            <div class="input-field">
+                <label id="lbl-mode">Action</label>
+                <select id="mode" class="input-box" onchange="calculate()">
+                    <option value="add" id="opt-add">Add VAT</option>
+                    <option value="sub" id="opt-sub">Remove VAT</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="res-container">
+            <div class="res-line"><span id="res-net-lbl">Net Amount:</span> <span class="res-val" id="res-net">0.00</span></div>
+            <div class="res-line"><span id="res-tax-lbl">VAT Amount:</span> <span class="res-val" id="res-tax">0.00</span></div>
+            <div class="res-line res-total"><span id="res-total-lbl">Total:</span> <span class="res-val" id="res-total">0.00</span></div>
+        </div>
     </div>
 
-    <div class="result-area">
-        <div class="res-line"><span id="res-net-lbl">Net Amount:</span> <span class="res-val" id="res-net">0.00</span></div>
-        <div class="res-line"><span id="res-tax-lbl">VAT Amount:</span> <span class="res-val" id="res-tax">0.00</span></div>
-        <div class="res-line total-line"><span id="res-total-lbl">Total:</span> <span class="res-val" id="res-total">0.00</span></div>
-    </div>
-
-    <div class="seo-section" id="seo-box"></div>
+    <div class="seo-content" id="seo-box"></div>
 </div>
 
 <footer>
-    <p id="footer-text">© 2026 VATCalculator.io - Professional Tax Tools</p>
-    <div style="margin-top: 10px;">
-        <span class="f-link" id="link-priv">Privacy</span>
-        <span class="f-link" id="link-terms">Terms</span>
+    <p id="txt-footer">© 2026 VATCalculator.io</p>
+    <div>
+        <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</span>
+        <span class="footer-link" onclick="openPol('terms')" id="id-terms">Terms of Use</span>
     </div>
 </footer>
 
+<div id="siteModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
 <script>
-    const i18n = {
+    const translations = {
         en: {
-            amount: "Amount:", rate: "VAT Rate (%):", mode: "Action:", add: "Add VAT", sub: "Remove VAT",
-            net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:", privacy: "Privacy Policy", terms: "Terms of Use",
-            footer: "© 2026 VATCalculator.io - Global Tax Tool",
-            seo: `<h2>Professional Online VAT Calculator</h2><p>Calculate value-added tax easily for any business transaction. Supports adding tax to net price or extracting it from gross price. Accurate results for UK, EU, and global tax rates.</p>`
+            amount: "Amount", rate: "VAT Rate (%)", mode: "Action", add: "Add VAT", sub: "Remove VAT",
+            net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:",
+            privacy: "Privacy Policy", terms: "Terms of Use", footer: "© 2026 VATCalculator.io - Fast & Accurate Tax Tool",
+            seo: `<h2>Online VAT Calculator</h2><p>Calculate value-added tax easily for any business transaction. Supports adding tax to net price or extracting it from gross price.</p>`,
+            privText: `<h2>Privacy Policy</h2><p>We do not collect personal data. Cookies are used for language settings.</p>`,
+            termsText: `<h2>Terms of Use</h2><p>Results are for informational purposes only. Use at your own risk.</p>`
         },
         uk: {
-            amount: "Сума:", rate: "Ставка ПДВ (%):", mode: "Операція:", add: "Нарахувати ПДВ", sub: "Вирахувати ПДВ",
-            net: "Сума без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:", privacy: "Конфіденційність", terms: "Умови",
-            footer: "© 2026 VATCalculator.io - Фінансові інструменти",
-            seo: `<h2>Професійний калькулятор ПДВ онлайн</h2><p>Швидко розраховуйте податок на додану вартість. Зручно для бухгалтерів та підприємців при роботі з рахунками, ПДВ 20%, 7% та іншими ставками.</p>`
+            amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ", sub: "Вирахувати ПДВ",
+            net: "Сума без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
+            privacy: "Конфіденційність", terms: "Умови", footer: "© 2026 VATCalculator.io - Швидко та точно",
+            seo: `<h2>Калькулятор ПДВ онлайн</h2><p>Швидкий та зручний інструмент для розрахунку податку на додану вартість. Підтримує нарахування ПДВ та виділення податку із загальної суми.</p>`,
+            privText: `<h2>Політика конфіденційності</h2><p>Ми не збираємо ваші персональні дані.</p>`,
+            termsText: `<h2>Умови використання</h2><p>Результати мають довідковий характер.</p>`
         },
         es: {
-            amount: "Cantidad:", rate: "Tasa de IVA (%):", mode: "Acción:", add: "Añadir IVA", sub: "Extraer IVA",
-            net: "Base Imponible:", tax: "Cuota de IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
-            footer: "© 2026 VATCalculator.io - Herramienta Fiscal",
-            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el impuesto sobre el valor añadido de forma sencilla. Añada el IVA al precio neto o extráigalo del total de sus facturas.</p>`
+            amount: "Cantidad", rate: "Tasa de IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
+            net: "Base Imponible:", tax: "Cuota de IVA:", total: "Total:",
+            privacy: "Privacidad", terms: "Términos", footer: "© 2026 VATCalculator.io - Rápido y preciso",
+            seo: `<h2>Calculadora de IVA en Línea</h2><p>Calcule el impuesto sobre el valor añadido de forma sencilla. Añada el IVA al precio neto o extráigalo del total.</p>`,
+            privText: `<h2>Política de Privacidad</h2><p>No recopilamos datos personales.</p>`,
+            termsText: `<h2>Términos de Uso</h2><p>Los resultados son solo informativos.</p>`
         },
         de: {
-            amount: "Betrag:", rate: "MwSt.-Satz (%):", mode: "Aktion:", add: "MwSt. hinzufügen", sub: "MwSt. abziehen",
-            net: "Nettobetrag:", tax: "MwSt. Betrag:", total: "Gesamtbetrag:", privacy: "Datenschutz", terms: "AGB",
-            footer: "© 2026 VATCalculator.io - MwSt Rechner",
-            seo: `<h2>Professioneller MwSt.-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und einfach. Unterstützt das Hinzufügen zum Nettopreis oder das Herausrechnen aus dem Bruttopreis.</p>`
+            amount: "Betrag", rate: "MwSt.-Satz (%)", mode: "Aktion", add: "MwSt. hinzufügen", sub: "MwSt. abziehen",
+            net: "Nettobetrag:", tax: "MwSt. Betrag:", total: "Gesamtbetrag:",
+            privacy: "Datenschutz", terms: "AGB", footer: "© 2026 VATCalculator.io - Schnell und genau",
+            seo: `<h2>MwSt-Rechner Online</h2><p>Berechnen Sie die Mehrwertsteuer schnell und einfach für Ihre Rechnungen.</p>`,
+            privText: `<h2>Datenschutz</h2><p>Wir sammeln keine persönlichen Daten.</p>`,
+            termsText: `<h2>Nutzungsbedingungen</h2><p>Alle Ergebnisse sind ohne Gewähr.</p>`
         }
     };
 
-    let currentLang = localStorage.getItem('vat_lang') || 'en';
+    let curLang = localStorage.getItem('lang_vat') || 'en';
 
     function changeLang(lang) {
-        currentLang = lang;
-        localStorage.setItem('vat_lang', lang);
+        curLang = lang;
+        localStorage.setItem('lang_vat', lang);
         updateUI();
     }
 
     function updateUI() {
-        const t = i18n[currentLang] || i18n['en'];
-        document.getElementById('langSelect').value = currentLang;
-        document.getElementById('lbl-amount').innerText = t.amount;
-        document.getElementById('lbl-rate').innerText = t.rate;
-        document.getElementById('lbl-mode').innerText = t.mode;
-        document.getElementById('opt-add').innerText = t.add;
-        document.getElementById('opt-sub').innerText = t.sub;
-        document.getElementById('res-net-lbl').innerText = t.net;
-        document.getElementById('res-tax-lbl').innerText = t.tax;
-        document.getElementById('res-total-lbl').innerText = t.total;
-        document.getElementById('seo-box').innerHTML = t.seo;
-        document.getElementById('footer-text').innerText = t.footer;
-        document.getElementById('link-priv').innerText = t.privacy;
-        document.getElementById('link-terms').innerText = t.terms;
+        const l = translations[curLang] || translations['en'];
+        
+        // Оновлення активної кнопки мови
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + curLang).classList.add('active');
+
+        document.getElementById('lbl-amount').innerText = l.amount;
+        document.getElementById('lbl-rate').innerText = l.rate;
+        document.getElementById('lbl-mode').innerText = l.mode;
+        document.getElementById('opt-add').innerText = l.add;
+        document.getElementById('opt-sub').innerText = l.sub;
+        document.getElementById('res-net-lbl').innerText = l.net;
+        document.getElementById('res-tax-lbl').innerText = l.tax;
+        document.getElementById('res-total-lbl').innerText = l.total;
+        document.getElementById('seo-box').innerHTML = l.seo;
+        document.getElementById('txt-footer').innerText = l.footer;
+        document.getElementById('link-privacy').innerText = l.privacy;
+        document.getElementById('id-terms').innerText = l.terms;
+        
         calculate();
     }
 
@@ -146,8 +186,13 @@
         document.getElementById('res-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
-    document.getElementById('link-priv').onclick = () => alert(currentLang === 'uk' ? "Ми не збираємо дані." : "No data collection.");
-    document.getElementById('link-terms').onclick = () => alert(currentLang === 'uk' ? "Тільки для ознайомлення." : "For info only.");
+    function openPol(type) {
+        const l = translations[curLang] || translations['en'];
+        document.getElementById('modalBody').innerHTML = type==='privacy' ? l.privText : l.termsText;
+        document.getElementById('siteModal').style.display = 'block';
+    }
+    function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
+    window.onclick = function(event) { if (event.target == document.getElementById('siteModal')) closeModal(); }
 
     updateUI();
 </script>
