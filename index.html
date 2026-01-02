@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Calculator - Quick Online Tax Tool</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #212529; }
+        .header { background-color: #2c3e50; padding: 15px; display: flex; justify-content: space-between; align-items: center; color: white; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .lang-select { background: #34495e; color: white; border: 1px solid white; padding: 5px; border-radius: 4px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        .result-area { background: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .res-line { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; }
+        .res-val { font-weight: bold; color: #2c3e50; }
+        .seo-section { margin-top: 30px; line-height: 1.6; font-size: 14px; color: #666; }
+        footer { text-align: center; padding: 20px; font-size: 12px; color: #888; border-top: 1px solid #ddd; margin-top: 20px; }
+        .f-link { color: #2c3e50; text-decoration: underline; cursor: pointer; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1 style="font-size: 18px; margin: 0;">VATCalc.io</h1>
+    <select class="lang-select" onchange="changeLang(this.value)" id="langSelect">
+        <option value="en">English</option>
+        <option value="uk">Українська</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+    </select>
+</div>
+
+<div class="container">
+    <div class="input-group">
+        <label id="lbl-amount">Amount:</label>
+        <input type="number" id="amount" value="1000" oninput="calculate()">
+    </div>
+    <div class="input-group">
+        <label id="lbl-rate">VAT Rate (%):</label>
+        <input type="number" id="rate" value="20" oninput="calculate()">
+    </div>
+    <div class="input-group">
+        <label id="lbl-mode">Action:</label>
+        <select id="mode" onchange="calculate()">
+            <option value="add" id="opt-add">Add VAT</option>
+            <option value="sub" id="opt-sub">Remove VAT</option>
+        </select>
+    </div>
+
+    <div class="result-area">
+        <div class="res-line"><span id="res-net-lbl">Net Amount:</span> <span class="res-val" id="res-net">0.00</span></div>
+        <div class="res-line"><span id="res-tax-lbl">VAT Amount:</span> <span class="res-val" id="res-tax">0.00</span></div>
+        <hr>
+        <div class="res-line" style="font-size: 22px;"><span id="res-total-lbl">Total:</span> <span class="res-val" id="res-total">0.00</span></div>
+    </div>
+
+    <div class="seo-section" id="seo-box"></div>
+</div>
+
+<footer>
+    <p id="footer-text">© 2026 VAT Calculator Online</p>
+    <span class="f-link" onclick="alert('Privacy Policy Content')">Privacy</span>
+    <span class="f-link" onclick="alert('Terms Content')">Terms</span>
+</footer>
+
+<script>
+    const i18n = {
+        en: {
+            amount: "Amount:", rate: "VAT Rate (%):", mode: "Action:", add: "Add VAT", sub: "Remove VAT",
+            net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:",
+            seo: "<h2>Professional VAT Calculator</h2><p>Calculate value-added tax easily for any business transaction. Supports adding tax to net price or extracting it from gross price.</p>"
+        },
+        uk: {
+            amount: "Сума:", rate: "Ставка ПДВ (%):", mode: "Операція:", add: "Нарахувати ПДВ", sub: "Вирахувати ПДВ",
+            net: "Сума без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
+            seo: "<h2>Професійний калькулятор ПДВ</h2><p>Швидко розраховуйте податок на додану вартість. Зручно для бухгалтерів та підприємців при роботі з рахунками та актами.</p>"
+        },
+        es: {
+            amount: "Cantidad:", rate: "Tasa de IVA (%):", mode: "Acción:", add: "Añadir IVA", sub: "Extraer IVA",
+            net: "Base Imponible:", tax: "Cuota de IVA:", total: "Total:",
+            seo: "<h2>Calculadora de IVA Profesional</h2><p>Calcule el impuesto sobre el valor añadido de forma sencilla. Añada el IVA al precio neto o extráigalo del total.</p>"
+        },
+        de: {
+            amount: "Betrag:", rate: "MwSt.-Satz (%):", mode: "Aktion:", add: "MwSt. hinzufügen", sub: "MwSt. abziehen",
+            net: "Nettobetrag:", tax: "MwSt. Betrag:", total: "Gesamtbetrag:",
+            seo: "<h2>Professioneller MwSt.-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und einfach. Unterstützt das Hinzufügen zum Nettopreis oder das Herausrechnen aus dem Bruttopreis.</p>"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function changeLang(lang) {
+        currentLang = lang;
+        updateUI();
+    }
+
+    function updateUI() {
+        const t = i18n[currentLang];
+        document.getElementById('lbl-amount').innerText = t.amount;
+        document.getElementById('lbl-rate').innerText = t.rate;
+        document.getElementById('lbl-mode').innerText = t.mode;
+        document.getElementById('opt-add').innerText = t.add;
+        document.getElementById('opt-sub').innerText = t.sub;
+        document.getElementById('res-net-lbl').innerText = t.net;
+        document.getElementById('res-tax-lbl').innerText = t.tax;
+        document.getElementById('res-total-lbl').innerText = t.total;
+        document.getElementById('seo-box').innerHTML = t.seo;
+        calculate();
+    }
+
+    function calculate() {
+        const amt = parseFloat(document.getElementById('amount').value) || 0;
+        const rate = parseFloat(document.getElementById('rate').value) || 0;
+        const mode = document.getElementById('mode').value;
+        
+        let net, tax, total;
+
+        if (mode === 'add') {
+            net = amt;
+            tax = amt * (rate / 100);
+            total = net + tax;
+        } else {
+            total = amt;
+            net = amt / (1 + (rate / 100));
+            tax = total - net;
+        }
+
+        document.getElementById('res-net').innerText = net.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('res-tax').innerText = tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('res-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    updateUI();
+</script>
+</body>
+</html>
