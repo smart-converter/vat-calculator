@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="8boxzAKQUKKF8IEuVEX1wX8aUwcdch3Q11BgfGM3vkM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAT Calculator Elite - Pro Tax Tool Online</title>
     <style>
@@ -60,8 +61,8 @@
         
         <label id="lbl-mode">Action</label>
         <select id="mode" class="input-box" onchange="calculate()" style="appearance: none; background-color: #0f172a;">
-            <option value="add" id="opt-add">Add VAT</option>
-            <option value="sub" id="opt-sub">Remove VAT</option>
+            <option value="add" id="opt-add">Add VAT (Net + Tax)</option>
+            <option value="sub" id="opt-sub">Remove VAT (Gross - Tax)</option>
         </select>
 
         <div class="res-container">
@@ -105,9 +106,20 @@
             amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ (На суму)", sub: "Вирахувати ПДВ (Із суми)",
             net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Разом:", privacy: "Конфіденційність", terms: "Умови",
             footer: "© 2026 VATCALC ELITE", tools: "Інші інструменти:",
-            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ (20%, 7% або будь-яку іншу ставку). Ідеально підходить для бухгалтерів, підприємців та фрілансерів при підготовці рахунків-фактур.</p><h2>Як розрахувати ПДВ?</h2><p>Для нарахування ПДВ помножте суму на (1 + ставка/100). Для виділення ПДВ із загальної суми розділіть її на (1 + ставка/100).</p>`
+            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ (20%, 7% або будь-яку іншу ставку). Ідеально підходить для бухгалтерів, підприємців та фрілансерів при підготовці рахунків-фактур.</p><h2>Як розрахувати ПДВ?</h2><p>Для нарахування ПДВ помножте суму на (1 + ставка/100). Для виділення ПДВ із загальної суми розділіть її на (1 + ставка/100). Податкові ставки можуть відрізнятися в залежності від країни.</p>`
+        },
+        es: {
+            amount: "Cantidad", rate: "IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
+            net: "Neto:", tax: "Cuota IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
+            footer: "© 2026 VATCALC ELITE", tools: "Otras herramientas:",
+            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales internacionales.</p>`
+        },
+        de: {
+            amount: "Betrag", rate: "MwSt (%)", mode: "Aktion", add: "MwSt dazu", sub: "MwSt weg",
+            net: "Netto:", tax: "MwSt Betrag:", total: "Gesamt:", privacy: "Datenschutz", terms: "AGB",
+            footer: "© 2026 VATCALC ELITE", tools: "Andere Werkzeuge:",
+            seo: `<h2>Professioneller MwSt-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und präzise für Ihr Unternehmen.</p>`
         }
-        // ... іспанська та німецька залишаються за аналогією
     };
 
     let curLang = localStorage.getItem('lang_vat_elite') || 'en';
@@ -153,7 +165,7 @@
 
     function openPol(type) {
         const l = translations[curLang] || translations['en'];
-        document.getElementById('modalBody').innerHTML = type==='privacy' ? l.seo : l.seo; // Спрощено для прикладу
+        document.getElementById('modalBody').innerHTML = type==='privacy' ? l.seo : l.seo; 
         document.getElementById('siteModal').style.display = 'block';
     }
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
