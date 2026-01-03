@@ -2,175 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="8boxzAKQUKKF8IEuVEX1wX8aUwcdch3Q11BgfGM3vkM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator Elite - Pro Tax Tool Online</title>
+    <title>VAT Calculator - Quick & Accurate Online Tool</title>
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: #0f172a; color: #f8fafc; -webkit-font-smoothing: antialiased; }
-        .top-header { background-color: #0f172a; padding: 20px 15px; text-align: center; border-bottom: 1px solid #1e293b; }
-        .top-header h1 { margin: 0; font-size: 22px; font-weight: 700; color: #38bdf8; text-transform: uppercase; }
+        /* ОНОВЛЕНІ КОЛЬОРИ ПІД ТЕМНУ ТЕМУ */
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-green: #22c55e;
+            --text-light: #f8fafc;
+            --border-color: #334155;
+        }
+
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            margin: 0; padding: 0; 
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            -webkit-font-smoothing: antialiased; 
+        }
         
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { padding: 10px; text-align: center; background: #1e293b; border: 1px solid #334155; border-radius: 8px; cursor: pointer; font-size: 13px; color: #94a3b8; }
-        .lang-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: bold; }
+        .top-header { 
+            background-color: #166534; padding: 12px 15px; 
+            display: flex; align-items: center; justify-content: space-between; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
 
-        .container { max-width: 500px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
-        .calc-section { background: #1e293b; padding: 25px; border-radius: 20px; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
+
+        /* КОНТЕЙНЕР КАЛЬКУЛЯТОРА (тепер темний) */
+        .converter-box { 
+            border: 1px solid var(--border-color); padding: 25px 20px; 
+            background: var(--card-bg); border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 10px;
+        }
+
+        .row { margin-bottom: 15px; }
+        .row label { display: block; margin-bottom: 8px; font-size: 15px; color: #94a3b8; font-weight: 700; }
+
+        /* ПОЛЯ ВВОДУ (як у Unit Converter) */
+        .input-field { 
+            width: 100%; padding: 12px; border: 1px solid var(--border-color); 
+            border-radius: 8px; font-size: 19px; font-weight: 800; 
+            box-sizing: border-box; background: #fff; color: #000; 
+        }
+
+        /* КНОПКИ ПЕРЕМИКАННЯ */
+        .radio-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .radio-option { 
+            flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); 
+            border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900;
+        }
+        .radio-option.active { background: white; color: #166534; }
+
+        /* БЛОК РЕЗУЛЬТАТУ */
+        .result-box { 
+            background: #f0fdf4; border: 2px solid var(--accent-green); 
+            padding: 15px; border-radius: 10px; color: #166534; margin-top: 10px;
+        }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 800; font-size: 18px; }
+
+        .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; color: #94a3b8; margin-top: 20px; }
+        .seo-content h2 { color: var(--accent-green); font-size: 19px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 12px; color: #64748b; }
         
-        label { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
-        .input-box { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 18px; font-weight: 700; box-sizing: border-box; margin-bottom: 20px; outline: none; }
-        .input-box:focus { border-color: #38bdf8; }
-
-        .res-container { background: rgba(56, 189, 248, 0.05); border: 1px dashed #38bdf8; border-radius: 12px; padding: 15px; }
-        .res-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; color: #94a3b8; }
-        .res-val { font-weight: 800; color: #38bdf8; }
-        .res-total { border-top: 1px solid #334155; padding-top: 12px; margin-top: 8px; font-size: 20px; color: #fff; }
-
-        .seo-content { max-width: 500px; margin: 20px auto; padding: 0 20px; line-height: 1.6; color: #64748b; font-size: 14px; }
-        .seo-content h2 { color: #38bdf8; font-size: 18px; }
-
-        .network-tools { max-width: 500px; margin: 20px auto; text-align: center; padding: 15px; border-top: 1px solid #1e293b; }
-        .tool-link { display: inline-block; color: #38bdf8; text-decoration: none; font-size: 13px; margin: 5px 10px; border: 1px solid #38bdf8; padding: 5px 12px; border-radius: 20px; }
-
-        footer { padding: 20px; text-align: center; background: #0f172a; border-top: 1px solid #1e293b; }
-        .footer-link { color: #38bdf8; text-decoration: none; cursor: pointer; font-weight: bold; font-size: 13px; margin: 0 10px; }
-
-        .modal { display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); }
-        .modal-content { background: #1e293b; margin: 15% auto; padding: 30px; width: 85%; max-width: 400px; border-radius: 20px; border: 1px solid #334155; position: relative; }
-        .close { position: absolute; right: 15px; top: 10px; font-size: 35px; font-weight: 900; color: #38bdf8; cursor: pointer; }
+        .tool-link-btn { 
+            display: inline-block; padding: 8px 16px; margin: 10px 5px; 
+            border: 1px solid var(--accent-green); color: var(--accent-green); 
+            text-decoration: none; border-radius: 8px; font-weight: 900; 
+        }
     </style>
 </head>
 <body>
 
-<div class="top-header"><h1>VATCALC ELITE</h1></div>
-
-<div class="lang-grid">
-    <div class="lang-btn" onclick="changeLang('en')" id="btn-en">ENGLISH</div>
-    <div class="lang-btn" onclick="changeLang('uk')" id="btn-uk">УКРАЇНСЬКА</div>
-    <div class="lang-btn" onclick="changeLang('es')" id="btn-es">ESPAÑOL</div>
-    <div class="lang-btn" onclick="changeLang('de')" id="btn-de">DEUTSCH</div>
+<div class="top-header">
+    <h1>VAT Calculator</h1>
 </div>
 
 <div class="container">
-    <div class="calc-section">
-        <label id="lbl-amount">Amount</label>
-        <input type="number" id="amount" class="input-box" value="1000" oninput="calculate()">
-        
-        <label id="lbl-rate">VAT Rate (%)</label>
-        <input type="number" id="rate" class="input-box" value="20" oninput="calculate()">
-        
-        <label id="lbl-mode">Action</label>
-        <select id="mode" class="input-box" onchange="calculate()" style="appearance: none; background-color: #0f172a;">
-            <option value="add" id="opt-add">Add VAT (Net + Tax)</option>
-            <option value="sub" id="opt-sub">Remove VAT (Gross - Tax)</option>
-        </select>
+    <div class="converter-box">
+        <div class="radio-group">
+            <div id="btn-add" class="radio-option active" onclick="setMode('add')">Add VAT</div>
+            <div id="btn-rem" class="radio-option" onclick="setMode('rem')">Remove VAT</div>
+        </div>
 
-        <div class="res-container">
-            <div class="res-line"><span id="res-net-lbl">Net:</span> <span class="res-val" id="res-net">0.00</span></div>
-            <div class="res-line"><span id="res-tax-lbl">VAT:</span> <span class="res-val" id="res-tax">0.00</span></div>
-            <div class="res-line res-total"><span id="res-total-lbl">Total:</span> <span class="res-val" id="res-total">0.00</span></div>
+        <div class="row">
+            <label>Amount (Net/Gross):</label>
+            <input type="number" id="amount" class="input-field" value="100" oninput="calculate()">
+        </div>
+
+        <div class="row">
+            <label>VAT Rate (%):</label>
+            <input type="number" id="rate" class="input-field" value="20" oninput="calculate()">
+        </div>
+
+        <div class="result-box">
+            <div class="result-row"><span>VAT Amount:</span> <span id="res-vat">20.00</span></div>
+            <div class="result-row"><span>Total:</span> <span id="res-total">120.00</span></div>
         </div>
     </div>
-</div>
 
-<div class="seo-content" id="seo-box"></div>
+    <div class="seo-content">
+        <h2>How to Calculate VAT?</h2>
+        <p>To <strong>add VAT</strong>, multiply the net amount by (1 + VAT rate/100). To <strong>remove VAT</strong>, divide the gross amount by (1 + VAT rate/100).</p>
+    </div>
 
-<div class="network-tools">
-    <p style="font-size: 12px; color: #475569; margin-bottom: 10px;" id="txt-tools">Other tools:</p>
-    <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link">Percentage Calculator</a>
-    <a href="https://smart-converter.github.io/unit-converter/" class="tool-link">Unit Converter</a>
+    <div style="text-align: center;">
+        <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+    </div>
 </div>
 
 <footer>
-    <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy</span>
-    <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms</span>
-    <p id="txt-footer" style="color: #475569; font-size: 11px; margin-top: 15px;"></p>
+    <p>© 2025 Smart-Converter Tools</p>
 </footer>
 
-<div id="siteModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
-
 <script>
-    const translations = {
-        en: {
-            amount: "Amount", rate: "VAT Rate (%)", mode: "Action", add: "Add VAT (Net + Tax)", sub: "Remove VAT (Gross - Tax)",
-            net: "Net Amount:", tax: "VAT Amount:", total: "Total:", privacy: "Privacy Policy", terms: "Terms",
-            footer: "© 2026 VATCALC ELITE", tools: "Our Elite Tools:",
-            seo: `<h2>Advanced VAT Calculator Online</h2><p>Our tool provides instant value-added tax calculations for global business. Easily add tax to net prices or extract VAT from total amounts. Perfect for invoices, accounting, and shopping.</p><h2>How to calculate VAT?</h2><p>To add 20% VAT, multiply the amount by 1.20. To remove it, divide the total by 1.20.</p>`
-        },
-        uk: {
-            amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ (На суму)", sub: "Вирахувати ПДВ (Із суми)",
-            net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Разом:", privacy: "Конфіденційність", terms: "Умови",
-            footer: "© 2026 VATCALC ELITE", tools: "Інші інструменти:",
-            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ (20%, 7% або будь-яку іншу ставку). Ідеально підходить для бухгалтерів, підприємців та фрілансерів при підготовці рахунків-фактур.</p><h2>Як розрахувати ПДВ?</h2><p>Для нарахування ПДВ помножте суму на (1 + ставка/100). Для виділення ПДВ із загальної суми розділіть її на (1 + ставка/100). Податкові ставки можуть відрізнятися в залежності від країни.</p>`
-        },
-        es: {
-            amount: "Cantidad", rate: "IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
-            net: "Neto:", tax: "Cuota IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
-            footer: "© 2026 VATCALC ELITE", tools: "Otras herramientas:",
-            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales internacionales.</p>`
-        },
-        de: {
-            amount: "Betrag", rate: "MwSt (%)", mode: "Aktion", add: "MwSt dazu", sub: "MwSt weg",
-            net: "Netto:", tax: "MwSt Betrag:", total: "Gesamt:", privacy: "Datenschutz", terms: "AGB",
-            footer: "© 2026 VATCALC ELITE", tools: "Andere Werkzeuge:",
-            seo: `<h2>Professioneller MwSt-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und präzise für Ihr Unternehmen.</p>`
-        }
-    };
+    let mode = 'add';
 
-    let curLang = localStorage.getItem('lang_vat_elite') || 'en';
-
-    function changeLang(lang) {
-        curLang = lang;
-        localStorage.setItem('lang_vat_elite', lang);
-        updateUI();
-    }
-
-    function updateUI() {
-        const l = translations[curLang] || translations['en'];
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        if(document.getElementById('btn-' + curLang)) document.getElementById('btn-' + curLang).classList.add('active');
-
-        document.getElementById('lbl-amount').innerText = l.amount;
-        document.getElementById('lbl-rate').innerText = l.rate;
-        document.getElementById('lbl-mode').innerText = l.mode;
-        document.getElementById('opt-add').innerText = l.add;
-        document.getElementById('opt-sub').innerText = l.sub;
-        document.getElementById('res-net-lbl').innerText = l.net;
-        document.getElementById('res-tax-lbl').innerText = l.tax;
-        document.getElementById('res-total-lbl').innerText = l.total;
-        document.getElementById('seo-box').innerHTML = l.seo;
-        document.getElementById('txt-footer').innerText = l.footer;
-        document.getElementById('link-privacy').innerText = l.privacy;
-        document.getElementById('link-terms').innerText = l.terms;
-        document.getElementById('txt-tools').innerText = l.tools;
+    function setMode(m) {
+        mode = m;
+        document.getElementById('btn-add').classList.toggle('active', m === 'add');
+        document.getElementById('btn-rem').classList.toggle('active', m === 'rem');
         calculate();
     }
 
     function calculate() {
         const amt = parseFloat(document.getElementById('amount').value) || 0;
         const rate = parseFloat(document.getElementById('rate').value) || 0;
-        const mode = document.getElementById('mode').value;
-        let net, tax, total;
-        if (mode === 'add') { net = amt; tax = amt * (rate / 100); total = net + tax; }
-        else { total = amt; net = amt / (1 + (rate / 100)); tax = total - net; }
-        document.getElementById('res-net').innerText = net.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('res-tax').innerText = tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('res-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    }
+        let vat, total;
 
-    function openPol(type) {
-        const l = translations[curLang] || translations['en'];
-        document.getElementById('modalBody').innerHTML = type==='privacy' ? l.seo : l.seo; 
-        document.getElementById('siteModal').style.display = 'block';
+        if (mode === 'add') {
+            vat = amt * (rate / 100);
+            total = amt + vat;
+        } else {
+            total = amt / (1 + rate / 100);
+            vat = amt - total;
+        }
+
+        document.getElementById('res-vat').innerText = vat.toFixed(2);
+        document.getElementById('res-total').innerText = (mode === 'add' ? total : amt).toFixed(2);
     }
-    function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == document.getElementById('siteModal')) closeModal(); }
-    updateUI();
 </script>
 </body>
 </html>
