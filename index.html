@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator - Accurate Online Tool</title>
+    <title>VAT Calculator - Quick & Accurate Tool</title>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -21,9 +21,9 @@
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
         .lang-switcher option { color: #333; }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; box-sizing: border-box; min-height: 100vh; }
         
-        .converter-box { border: 1px solid var(--border-color); padding: 25px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 10px; }
+        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 10px; }
         
         .row { margin-bottom: 15px; }
         .row label { display: block; margin-bottom: 8px; font-size: 15px; color: #94a3b8; font-weight: 700; }
@@ -31,7 +31,7 @@
         .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; box-sizing: border-box; background: #fff; color: #000; }
         
         .radio-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900; transition: 0.2s; }
+        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900; }
         .radio-option.active { background: white; color: #166534; }
         
         .result-box { background: #f0fdf4; border: 2px solid var(--accent-green); padding: 15px; border-radius: 10px; color: #166534; margin-top: 10px; }
@@ -40,12 +40,12 @@
         .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; color: #94a3b8; margin-top: 20px; }
         .seo-content h2 { color: var(--accent-green); font-size: 19px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
 
-        .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .tools-network { padding: 30px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
         .tools-network h4 { margin: 0 0 12px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 900; }
+        .tool-link-btn { display: inline-block; padding: 10px 20px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none !important; border-radius: 8px; font-size: 14px; font-weight: 900; cursor: pointer; }
 
         footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 12px; color: #64748b; }
-        .footer-link { color: var(--accent-green); text-decoration: underline; padding: 0 8px; font-weight: 900; text-decoration: none; }
+        .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; display: inline-block; }
     </style>
 </head>
 <body>
@@ -95,8 +95,8 @@
 <footer>
     <p id="txt-footer">© 2025 Smart-Converter Tools - Your Trusted Partner</p>
     <div style="margin-top:10px;">
-        <a class="footer-link" href="#">Privacy Policy</a>
-        <a class="footer-link" href="#">Terms of Use</a>
+        <span class="footer-link">Privacy Policy</span>
+        <span class="footer-link">Terms of Use</span>
     </div>
 </footer>
 
