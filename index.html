@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<div class="seo-content" id="seo-box"></div>
+<div class="seo-box seo-content" id="seo-box"></div>
 
 <div class="network-tools">
     <p style="font-size: 12px; color: #475569; margin-bottom: 10px;" id="txt-tools">Other tools:</p>
@@ -100,28 +100,32 @@
             amount: "Amount", rate: "VAT Rate (%)", mode: "Action", add: "Add VAT (Net + Tax)", sub: "Remove VAT (Gross - Tax)",
             net: "Net Amount:", tax: "VAT Amount:", total: "Total:", privacy: "Privacy Policy", terms: "Terms of Use",
             footer: "© 2026 VATCALC ELITE", tools: "Our Elite Tools:",
-            legal: "<h3>Legal Information</h3><p>This tool is for informational purposes. No data is stored on our servers.</p>",
+            privacyText: "<h3>Privacy Policy</h3><p>We do not collect or store any personal data. All calculations are performed locally in your browser.</p>",
+            termsText: "<h3>Terms of Use</h3><p>This tool is provided 'as is' for informational purposes. Accuracy is not guaranteed for official tax filing.</p>",
             seo: `<h2>Advanced VAT Calculator Online</h2><p>Our tool provides instant value-added tax calculations for global business. Perfect for invoices, accounting, and shopping.</p>`
         },
         uk: {
             amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ (На суму)", sub: "Вирахувати ПДВ (Із суми)",
             net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Разом:", privacy: "Конфіденційність", terms: "Умови",
             footer: "© 2026 VATCALC ELITE", tools: "Інші інструменти:",
-            legal: "<h3>Юридична інформація</h3><p>Цей інструмент створено для ознайомлювальних цілей. Дані не зберігаються на наших серверах.</p>",
+            privacyText: "<h3>Політика конфіденційності</h3><p>Ми не збираємо та не зберігаємо ваші дані. Усі розрахунки виконуються локально у вашому браузері.</p>",
+            termsText: "<h3>Умови використання</h3><p>Цей інструмент надається 'як є' для ознайомлювальних цілей. Дані не є офіційним податковим звітом.</p>",
             seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ. Ідеально підходить для бухгалтерів та підприємців.</p>`
         },
         es: {
             amount: "Cantidad", rate: "IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
             net: "Neto:", tax: "Cuota IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
             footer: "© 2026 VATCALC ELITE", tools: "Otras herramientas:",
-            legal: "<h3>Información legal</h3><p>Esta herramienta es informativa. No se guardan datos en el servidor.</p>",
+            privacyText: "<h3>Privacidad</h3><p>No recopilamos datos. Los cálculos se realizan en su navegador.</p>",
+            termsText: "<h3>Términos</h3><p>Herramienta informativa. No nos hacemos responsables de errores de cálculo.</p>",
             seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales.</p>`
         },
         de: {
             amount: "Betrag", rate: "MwSt (%)", mode: "Aktion", add: "MwSt dazu", sub: "MwSt weg",
             net: "Netto:", tax: "MwSt Betrag:", total: "Gesamt:", privacy: "Datenschutz", terms: "AGB",
             footer: "© 2026 VATCALC ELITE", tools: "Andere Werkzeuge:",
-            legal: "<h3>Rechtliche Informationen</h3><p>Dieses Tool dient der Information. Es werden keine Daten gespeichert.</p>",
+            privacyText: "<h3>Datenschutz</h3><p>Es werden keine Daten gespeichert. Berechnungen erfolgen lokal im Browser.</p>",
+            termsText: "<h3>AGB</h3><p>Dieses Tool dient der Information. Nutzung auf eigene Gefahr.</p>",
             seo: `<h2>Professioneller MwSt-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und präzise für Ihr Unternehmen.</p>`
         }
     };
@@ -169,7 +173,7 @@
 
     function openPol(type) {
         const l = translations[curLang] || translations['en'];
-        document.getElementById('modalBody').innerHTML = l.legal; 
+        document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privacyText : l.termsText; 
         document.getElementById('siteModal').style.display = 'block';
     }
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
