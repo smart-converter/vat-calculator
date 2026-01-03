@@ -14,44 +14,77 @@
         }
 
         body { 
-            font-family: -apple-system, sans-serif; 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
             margin: 0; padding: 0; background-color: var(--bg-dark); 
-            color: var(--text-light); display: flex; flex-direction: column; min-height: 100vh;
+            color: var(--text-light); min-height: 100vh;
+            display: flex; flex-direction: column;
         }
         
-        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; }
-        .top-header h1 { margin: 0; font-size: 20px; color: white; }
+        /* ШАПКА ЯК У UNIT CONVERTER */
+        .top-header { 
+            background-color: #166534; padding: 15px; 
+            display: flex; align-items: center; justify-content: space-between; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        .top-header h1 { margin: 0; font-size: 22px; font-weight: 900; color: white; }
         
-        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 5px; border-radius: 8px; font-weight: bold; }
+        .lang-switcher { 
+            background: var(--bg-dark); border: 2px solid white; color: white; 
+            padding: 6px 10px; border-radius: 8px; font-size: 16px; font-weight: 800; cursor: pointer;
+        }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 15px; flex-grow: 1; width: 100%; box-sizing: border-box; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px 15px; flex: 1; width: 100%; box-sizing: border-box; }
         
-        .converter-box { border: 1px solid var(--border-color); padding: 25px 20px; background: var(--card-bg); border-radius: 12px; margin-top: 10px; }
+        .converter-box { 
+            border: 1px solid var(--border-color); padding: 30px 20px; 
+            background: var(--card-bg); border-radius: 16px; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
         
-        .row { margin-bottom: 15px; }
-        .row label { display: block; margin-bottom: 8px; color: #94a3b8; font-weight: bold; }
+        /* ВЕЛИКИЙ ТЕКСТ ЛЕЙБЛІВ */
+        .row { margin-bottom: 20px; }
+        .row label { display: block; margin-bottom: 10px; font-size: 18px; color: #94a3b8; font-weight: 800; }
         
-        .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; box-sizing: border-box; background: #fff; color: #000; font-weight: bold; }
+        .input-field { 
+            width: 100%; padding: 15px; border: 1px solid var(--border-color); 
+            border-radius: 10px; font-size: 22px; font-weight: 900; 
+            box-sizing: border-box; background: #fff; color: #000; 
+        }
         
-        .radio-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: bold; }
-        .radio-option.active { background: white; color: #166534; }
+        .radio-group { display: flex; gap: 12px; margin-bottom: 25px; }
+        .radio-option { 
+            flex: 1; padding: 15px; text-align: center; border: 1px solid var(--border-color); 
+            border-radius: 10px; cursor: pointer; background: #166534; color: white; 
+            font-weight: 900; font-size: 17px;
+        }
+        .radio-option.active { background: white; color: #166534; border-color: white; }
         
-        .result-box { background: #f0fdf4; border: 2px solid var(--accent-green); padding: 15px; border-radius: 10px; color: #166534; margin-top: 10px; }
-        .result-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; }
+        /* РЕЗУЛЬТАТ */
+        .result-box { 
+            background: #f0fdf4; border: 2px solid var(--accent-green); 
+            padding: 20px; border-radius: 12px; color: #166534; margin-top: 10px;
+        }
+        .result-row { display: flex; justify-content: space-between; font-weight: 900; font-size: 20px; margin-bottom: 8px; }
 
-        .tools-network { padding: 30px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        /* ІНШІ ІНСТРУМЕНТИ */
+        .tools-network { padding: 40px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 30px; }
+        .tools-network h4 { margin-bottom: 20px; color: #f8fafc; font-size: 18px; font-weight: 900; text-transform: uppercase; }
+        
         .tool-link-btn { 
-            display: inline-block; padding: 12px 18px; margin: 8px; 
-            border: 2px solid var(--accent-green); color: var(--accent-green) !important; 
-            text-decoration: none !important; border-radius: 10px; font-weight: 900;
+            display: block; width: 100%; max-width: 300px; margin: 10px auto;
+            padding: 15px; border: 2px solid var(--accent-green); 
+            color: var(--accent-green); text-decoration: none; 
+            border-radius: 12px; font-size: 16px; font-weight: 900;
         }
 
+        /* ФУТЕР ЯК ВИ ПРОСИЛИ */
         footer { 
-            padding: 30px 15px; text-align: center; font-size: 13px; color: #64748b; 
-            background: #0a0f1d; border-top: 2px solid var(--border-color);
+            border-top: 1px solid var(--border-color); padding: 30px 15px; 
+            text-align: center; background: #0a0f1d;
         }
-        .footer-link { color: var(--accent-green) !important; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 5px; display: inline-block; }
+        footer p { color: #64748b; font-size: 14px; margin-bottom: 15px; font-weight: 700; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; }
+        .footer-link { color: var(--accent-green); text-decoration: none; font-weight: 900; font-size: 15px; }
     </style>
 </head>
 <body>
@@ -73,7 +106,7 @@
             <div id="btn-rem" class="radio-option" onclick="setMode('rem')">Remove VAT</div>
         </div>
         <div class="row">
-            <label id="lbl-amount">Amount:</label>
+            <label id="lbl-amount">Amount (Net/Gross):</label>
             <input type="number" id="amount" class="input-field" value="100" oninput="calculate()">
         </div>
         <div class="row">
@@ -87,15 +120,15 @@
     </div>
 
     <div class="tools-network">
-        <h4 id="txt-other-tools">OTHER TOOLS</h4>
+        <h4 id="txt-other-tools">Other Tools</h4>
         <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
         <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
     </div>
 </div>
 
 <footer>
-    <p id="txt-footer">© 2025 Smart-Converter Tools</p>
-    <div style="margin-top:15px;">
+    <p id="txt-footer">© 2025 Smart-Converter Tools - Your Partner</p>
+    <div class="footer-links">
         <a href="https://smart-converter.github.io/unit-converter/privacy.html" class="footer-link">Privacy Policy</a>
         <a href="https://smart-converter.github.io/unit-converter/terms.html" class="footer-link">Terms of Use</a>
     </div>
@@ -104,10 +137,10 @@
 <script>
     let mode = 'add';
     const trans = {
-        en: { title: "VAT Calculator", amt: "Amount:", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "OTHER TOOLS", foot: "© 2025 Smart-Converter Tools", add: "Add VAT", rem: "Remove VAT" },
-        uk: { title: "Калькулятор ПДВ", amt: "Сума:", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "ІНШІ ІНСТРУМЕНТИ", foot: "© 2025 Smart-Converter", add: "Додати ПДВ", rem: "Відняти ПДВ" },
-        es: { title: "Calculadora de IVA", amt: "Cantidad:", rate: "Tasa IVA (%):", vamt: "Importe IVA:", tot: "Total:", other: "OTRAS HERRAMIENTAS", foot: "© 2025 Smart-Converter", add: "Añadir IVA", rem: "Quitar IVA" },
-        de: { title: "MwSt-Rechner", amt: "Betrag:", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "ANDERE WERKZEUGE", foot: "© 2025 Smart-Converter", add: "MwSt hinzufügen", rem: "MwSt abziehen" }
+        en: { title: "VAT Calculator", amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "Other Tools", foot: "© 2025 Smart-Converter Tools", add: "Add VAT", rem: "Remove VAT" },
+        uk: { title: "Калькулятор ПДВ", amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "Інші інструменти", foot: "© 2025 Smart-Converter - Ваш партнер", add: "Додати ПДВ", rem: "Відняти ПДВ" },
+        es: { title: "Calculadora de IVA", amt: "Cantidad (Neto/Bruto):", rate: "Tasa de IVA (%):", vamt: "Importe del IVA:", tot: "Total:", other: "Otras herramientas", foot: "© 2025 Smart-Converter Tools", add: "Añadir IVA", rem: "Quitar IVA" },
+        de: { title: "MwSt-Rechner", amt: "Betrag (Netto/Brutto):", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "Andere Werkzeuge", foot: "© 2025 Smart-Converter Tools", add: "MwSt hinzufügen", rem: "MwSt abziehen" }
     };
 
     function changeLang(l) {
