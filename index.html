@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator - Accurate Online Tool</title>
+    <title>VAT Calculator</title>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -14,50 +14,44 @@
         }
 
         body { 
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            font-family: -apple-system, sans-serif; 
             margin: 0; padding: 0; background-color: var(--bg-dark); 
-            color: var(--text-light); -webkit-font-smoothing: antialiased;
-            display: flex; flex-direction: column; min-height: 100vh;
+            color: var(--text-light); display: flex; flex-direction: column; min-height: 100vh;
         }
         
-        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
-        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
+        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; }
+        .top-header h1 { margin: 0; font-size: 20px; color: white; }
         
-        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 5px; border-radius: 8px; font-weight: bold; }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 15px; flex: 1; width: 100%; box-sizing: border-box; }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; flex-grow: 1; width: 100%; box-sizing: border-box; }
         
-        .converter-box { border: 1px solid var(--border-color); padding: 25px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 10px; }
+        .converter-box { border: 1px solid var(--border-color); padding: 25px 20px; background: var(--card-bg); border-radius: 12px; margin-top: 10px; }
         
         .row { margin-bottom: 15px; }
-        .row label { display: block; margin-bottom: 8px; font-size: 15px; color: #94a3b8; font-weight: 700; }
+        .row label { display: block; margin-bottom: 8px; color: #94a3b8; font-weight: bold; }
         
-        .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; box-sizing: border-box; background: #fff; color: #000; }
+        .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; box-sizing: border-box; background: #fff; color: #000; font-weight: bold; }
         
         .radio-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900; }
+        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: bold; }
         .radio-option.active { background: white; color: #166534; }
         
         .result-box { background: #f0fdf4; border: 2px solid var(--accent-green); padding: 15px; border-radius: 10px; color: #166534; margin-top: 10px; }
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: 800; font-size: 18px; }
+        .result-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; }
 
-        .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; color: #94a3b8; margin-top: 20px; }
-        .seo-content h2 { color: var(--accent-green); font-size: 19px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
-
-        .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .tools-network { padding: 30px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
         .tool-link-btn { 
-            display: inline-block; padding: 10px 15px; margin: 5px; 
-            border: 1px solid var(--accent-green); color: var(--accent-green); 
-            text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 900;
-            position: relative; z-index: 100;
+            display: inline-block; padding: 12px 18px; margin: 8px; 
+            border: 2px solid var(--accent-green); color: var(--accent-green) !important; 
+            text-decoration: none !important; border-radius: 10px; font-weight: 900;
         }
 
         footer { 
-            border-top: 1px solid var(--border-color); padding: 20px 15px; 
-            text-align: center; font-size: 12px; color: #64748b; 
-            background: var(--bg-dark); position: relative; z-index: 100;
+            padding: 30px 15px; text-align: center; font-size: 13px; color: #64748b; 
+            background: #0a0f1d; border-top: 2px solid var(--border-color);
         }
-        .footer-link { color: var(--accent-green); text-decoration: none; font-weight: 900; margin: 0 10px; cursor: pointer; }
+        .footer-link { color: var(--accent-green) !important; text-decoration: none; font-weight: bold; margin: 0 15px; padding: 5px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -79,7 +73,7 @@
             <div id="btn-rem" class="radio-option" onclick="setMode('rem')">Remove VAT</div>
         </div>
         <div class="row">
-            <label id="lbl-amount">Amount (Net/Gross):</label>
+            <label id="lbl-amount">Amount:</label>
             <input type="number" id="amount" class="input-field" value="100" oninput="calculate()">
         </div>
         <div class="row">
@@ -92,33 +86,28 @@
         </div>
     </div>
 
-    <div class="seo-content" id="seo-box">
-        <h2 id="h2-seo">Online VAT Calculation Tool</h2>
-        <p id="p-seo">Our VAT calculator helps you quickly add or remove value-added tax from any amount.</p>
-    </div>
-
     <div class="tools-network">
-        <h4 id="txt-other-tools" style="color: #64748b; font-size: 13px; margin-bottom: 10px;">OTHER TOOLS</h4>
+        <h4 id="txt-other-tools">OTHER TOOLS</h4>
         <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
         <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
     </div>
 </div>
 
 <footer>
-    <p id="txt-footer">© 2025 Smart-Converter Tools - Your Trusted Partner</p>
-    <div style="margin-top:10px;">
-        <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Terms of Use</a>
+    <p id="txt-footer">© 2025 Smart-Converter Tools</p>
+    <div style="margin-top:15px;">
+        <a href="https://smart-converter.github.io/unit-converter/privacy.html" class="footer-link">Privacy Policy</a>
+        <a href="https://smart-converter.github.io/unit-converter/terms.html" class="footer-link">Terms of Use</a>
     </div>
 </footer>
 
 <script>
     let mode = 'add';
     const trans = {
-        en: { title: "VAT Calculator", amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "OTHER TOOLS", foot: "© 2025 Smart-Converter Tools", add: "Add VAT", rem: "Remove VAT", h2: "Online VAT Calculation Tool", p: "Our VAT calculator helps you quickly add or remove value-added tax from any amount." },
-        uk: { title: "Калькулятор ПДВ", amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "ІНШІ ІНСТРУМЕНТИ", foot: "© 2025 Smart-Converter - Ваш надійний партнер", add: "Додати ПДВ", rem: "Відняти ПДВ", h2: "Калькулятор ПДВ онлайн", p: "Наш калькулятор ПДВ допоможе вам швидко додати або відняти податок на додану вартість." },
-        es: { title: "Calculadora de IVA", amt: "Cantidad (Neto/Bruto):", rate: "Tasa de IVA (%):", vamt: "Importe del IVA:", tot: "Total:", other: "OTRAS HERRAMIENTAS", foot: "© 2025 Smart-Converter Tools", add: "Añadir IVA", rem: "Quitar IVA", h2: "Calculadora de IVA en línea", p: "Nuestra calculadora de IVA le ayuda a añadir o quitar rápidamente el impuesto." },
-        de: { title: "MwSt-Rechner", amt: "Betrag (Netto/Brutto):", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "ANDERE WERKZEUGE", foot: "© 2025 Smart-Converter Tools", add: "MwSt hinzufügen", rem: "MwSt abziehen", h2: "MwSt-Rechner Online", p: "Unser MwSt-Rechner hilft Ihnen, die Mehrwertsteuer schnell zu berechnen." }
+        en: { title: "VAT Calculator", amt: "Amount:", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "OTHER TOOLS", foot: "© 2025 Smart-Converter Tools", add: "Add VAT", rem: "Remove VAT" },
+        uk: { title: "Калькулятор ПДВ", amt: "Сума:", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "ІНШІ ІНСТРУМЕНТИ", foot: "© 2025 Smart-Converter", add: "Додати ПДВ", rem: "Відняти ПДВ" },
+        es: { title: "Calculadora de IVA", amt: "Cantidad:", rate: "Tasa IVA (%):", vamt: "Importe IVA:", tot: "Total:", other: "OTRAS HERRAMIENTAS", foot: "© 2025 Smart-Converter", add: "Añadir IVA", rem: "Quitar IVA" },
+        de: { title: "MwSt-Rechner", amt: "Betrag:", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "ANDERE WERKZEUGE", foot: "© 2025 Smart-Converter", add: "MwSt hinzufügen", rem: "MwSt abziehen" }
     };
 
     function changeLang(l) {
@@ -131,8 +120,6 @@
         document.getElementById('txt-footer').innerText = trans[l].foot;
         document.getElementById('btn-add').innerText = trans[l].add;
         document.getElementById('btn-rem').innerText = trans[l].rem;
-        document.getElementById('h2-seo').innerText = trans[l].h2;
-        document.getElementById('p-seo').innerText = trans[l].p;
     }
 
     function setMode(m) {
