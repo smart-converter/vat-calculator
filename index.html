@@ -98,26 +98,30 @@
     const translations = {
         en: {
             amount: "Amount", rate: "VAT Rate (%)", mode: "Action", add: "Add VAT (Net + Tax)", sub: "Remove VAT (Gross - Tax)",
-            net: "Net Amount:", tax: "VAT Amount:", total: "Total:", privacy: "Privacy Policy", terms: "Terms",
+            net: "Net Amount:", tax: "VAT Amount:", total: "Total:", privacy: "Privacy Policy", terms: "Terms of Use",
             footer: "© 2026 VATCALC ELITE", tools: "Our Elite Tools:",
-            seo: `<h2>Advanced VAT Calculator Online</h2><p>Our tool provides instant value-added tax calculations for global business. Easily add tax to net prices or extract VAT from total amounts. Perfect for invoices, accounting, and shopping.</p><h2>How to calculate VAT?</h2><p>To add 20% VAT, multiply the amount by 1.20. To remove it, divide the total by 1.20.</p>`
+            legal: "<h3>Legal Information</h3><p>This tool is for informational purposes. No data is stored on our servers.</p>",
+            seo: `<h2>Advanced VAT Calculator Online</h2><p>Our tool provides instant value-added tax calculations for global business. Perfect for invoices, accounting, and shopping.</p>`
         },
         uk: {
             amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ (На суму)", sub: "Вирахувати ПДВ (Із суми)",
             net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Разом:", privacy: "Конфіденційність", terms: "Умови",
             footer: "© 2026 VATCALC ELITE", tools: "Інші інструменти:",
-            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ (20%, 7% або будь-яку іншу ставку). Ідеально підходить для бухгалтерів, підприємців та фрілансерів при підготовці рахунків-фактур.</p><h2>Як розрахувати ПДВ?</h2><p>Для нарахування ПДВ помножте суму на (1 + ставка/100). Для виділення ПДВ із загальної суми розділіть її на (1 + ставка/100). Податкові ставки можуть відрізнятися в залежності від країни.</p>`
+            legal: "<h3>Юридична інформація</h3><p>Цей інструмент створено для ознайомлювальних цілей. Дані не зберігаються на наших серверах.</p>",
+            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ. Ідеально підходить для бухгалтерів та підприємців.</p>`
         },
         es: {
             amount: "Cantidad", rate: "IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
             net: "Neto:", tax: "Cuota IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
             footer: "© 2026 VATCALC ELITE", tools: "Otras herramientas:",
-            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales internacionales.</p>`
+            legal: "<h3>Información legal</h3><p>Esta herramienta es informativa. No se guardan datos en el servidor.</p>",
+            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales.</p>`
         },
         de: {
             amount: "Betrag", rate: "MwSt (%)", mode: "Aktion", add: "MwSt dazu", sub: "MwSt weg",
             net: "Netto:", tax: "MwSt Betrag:", total: "Gesamt:", privacy: "Datenschutz", terms: "AGB",
             footer: "© 2026 VATCALC ELITE", tools: "Andere Werkzeuge:",
+            legal: "<h3>Rechtliche Informationen</h3><p>Dieses Tool dient der Information. Es werden keine Daten gespeichert.</p>",
             seo: `<h2>Professioneller MwSt-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und präzise für Ihr Unternehmen.</p>`
         }
     };
@@ -165,7 +169,7 @@
 
     function openPol(type) {
         const l = translations[curLang] || translations['en'];
-        document.getElementById('modalBody').innerHTML = type==='privacy' ? l.seo : l.seo; 
+        document.getElementById('modalBody').innerHTML = l.legal; 
         document.getElementById('siteModal').style.display = 'block';
     }
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
