@@ -31,7 +31,7 @@
         .input-field { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; box-sizing: border-box; background: #fff; color: #000; }
         
         .radio-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900; }
+        .radio-option { flex: 1; padding: 12px; text-align: center; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: #166534; color: white; font-weight: 900; transition: 0.2s; }
         .radio-option.active { background: white; color: #166534; }
         
         .result-box { background: #f0fdf4; border: 2px solid var(--accent-green); padding: 15px; border-radius: 10px; color: #166534; margin-top: 10px; }
@@ -45,13 +45,13 @@
         .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 900; }
 
         footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 12px; color: #64748b; }
-        .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; }
+        .footer-link { color: var(--accent-green); text-decoration: underline; padding: 0 8px; font-weight: 900; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div class="top-header">
-    <h1>VAT Calculator</h1>
+    <h1 id="header-title">VAT Calculator</h1>
     <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
         <option value="en">English</option>
         <option value="uk">Українська</option>
@@ -81,8 +81,8 @@
     </div>
 
     <div class="seo-content" id="seo-box">
-        <h2>Online VAT Calculation Tool</h2>
-        <p>Our VAT calculator helps you quickly add or remove value-added tax from any amount. Accurate results for business and personal use.</p>
+        <h2 id="h2-seo">Online VAT Calculation Tool</h2>
+        <p id="p-seo">Our VAT calculator helps you quickly add or remove value-added tax from any amount. Accurate results for business and personal use.</p>
     </div>
 
     <div class="tools-network">
@@ -95,27 +95,48 @@
 <footer>
     <p id="txt-footer">© 2025 Smart-Converter Tools - Your Trusted Partner</p>
     <div style="margin-top:10px;">
-        <span class="footer-link">Privacy Policy</span>
-        <span class="footer-link">Terms of Use</span>
+        <a class="footer-link" href="#">Privacy Policy</a>
+        <a class="footer-link" href="#">Terms of Use</a>
     </div>
 </footer>
 
 <script>
     let mode = 'add';
     const trans = {
-        en: { amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "Other Tools", foot: "© 2025 Smart-Converter Tools" },
-        uk: { amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "Інші інструменти", foot: "© 2025 Smart-Converter - Ваш надійний партнер" },
-        es: { amt: "Cantidad (Neto/Bruto):", rate: "Tasa de IVA (%):", vamt: "Importe del IVA:", tot: "Total:", other: "Otras herramientas", foot: "© 2025 Smart-Converter Tools" },
-        de: { amt: "Betrag (Netto/Brutto):", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "Andere Werkzeuge", foot: "© 2025 Smart-Converter Tools" }
+        en: { 
+            title: "VAT Calculator", amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", 
+            other: "Other Tools", foot: "© 2025 Smart-Converter Tools", add: "Add VAT", rem: "Remove VAT",
+            h2: "Online VAT Calculation Tool", p: "Our VAT calculator helps you quickly add or remove value-added tax from any amount."
+        },
+        uk: { 
+            title: "Калькулятор ПДВ", amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", 
+            other: "Інші інструменти", foot: "© 2025 Smart-Converter - Ваш надійний партнер", add: "Додати ПДВ", rem: "Відняти ПДВ",
+            h2: "Калькулятор ПДВ онлайн", p: "Наш калькулятор ПДВ допоможе вам швидко додати або відняти податок на додану вартість."
+        },
+        es: { 
+            title: "Calculadora de IVA", amt: "Cantidad (Neto/Bruto):", rate: "Tasa de IVA (%):", vamt: "Importe del IVA:", tot: "Total:", 
+            other: "Otras herramientas", foot: "© 2025 Smart-Converter Tools", add: "Añadir IVA", rem: "Quitar IVA",
+            h2: "Calculadora de IVA en línea", p: "Nuestra calculadora de IVA le ayuda a añadir o quitar rápidamente el impuesto."
+        },
+        de: { 
+            title: "MwSt-Rechner", amt: "Betrag (Netto/Brutto):", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", 
+            other: "Andere Werkzeuge", foot: "© 2025 Smart-Converter Tools", add: "MwSt hinzufügen", rem: "MwSt abziehen",
+            h2: "MwSt-Rechner Online", p: "Unser MwSt-Rechner hilft Ihnen, die Mehrwertsteuer schnell zu berechnen."
+        }
     };
 
     function changeLang(l) {
+        document.getElementById('header-title').innerText = trans[l].title;
         document.getElementById('lbl-amount').innerText = trans[l].amt;
         document.getElementById('lbl-rate').innerText = trans[l].rate;
         document.getElementById('lbl-vat-amt').innerText = trans[l].vamt;
         document.getElementById('lbl-total').innerText = trans[l].tot;
         document.getElementById('txt-other-tools').innerText = trans[l].other;
         document.getElementById('txt-footer').innerText = trans[l].foot;
+        document.getElementById('btn-add').innerText = trans[l].add;
+        document.getElementById('btn-rem').innerText = trans[l].rem;
+        document.getElementById('h2-seo').innerText = trans[l].h2;
+        document.getElementById('p-seo').innerText = trans[l].p;
     }
 
     function setMode(m) {
