@@ -19,6 +19,7 @@
         .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
         
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
+        .lang-switcher option { color: #333; }
 
         .container { max-width: 600px; margin: 0 auto; padding: 15px; box-sizing: border-box; }
         
@@ -39,8 +40,12 @@
         .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; color: #94a3b8; margin-top: 20px; }
         .seo-content h2 { color: var(--accent-green); font-size: 19px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
 
-        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 12px; color: #64748b; margin-top: 20px; }
-        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 10px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-weight: 900; }
+        .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .tools-network h4 { margin: 0 0 12px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 900; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 12px; color: #64748b; }
+        .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; }
     </style>
 </head>
 <body>
@@ -50,6 +55,8 @@
     <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
         <option value="en">English</option>
         <option value="uk">Українська</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
     </select>
 </div>
 
@@ -74,24 +81,32 @@
     </div>
 
     <div class="seo-content" id="seo-box">
-        <h2>How to Calculate VAT?</h2>
-        <p>To <strong>add VAT</strong>, multiply the net amount by (1 + VAT rate/100). To <strong>remove VAT</strong>, divide the gross amount by (1 + VAT rate/100).</p>
+        <h2>Online VAT Calculation Tool</h2>
+        <p>Our VAT calculator helps you quickly add or remove value-added tax from any amount. Accurate results for business and personal use.</p>
     </div>
 
-    <div style="text-align: center;">
+    <div class="tools-network">
+        <h4 id="txt-other-tools">Other Tools</h4>
         <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+        <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
     </div>
 </div>
 
 <footer>
     <p id="txt-footer">© 2025 Smart-Converter Tools - Your Trusted Partner</p>
+    <div style="margin-top:10px;">
+        <span class="footer-link">Privacy Policy</span>
+        <span class="footer-link">Terms of Use</span>
+    </div>
 </footer>
 
 <script>
     let mode = 'add';
     const trans = {
-        en: { amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", foot: "© 2025 Smart-Converter Tools" },
-        uk: { amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", foot: "© 2025 Smart-Converter - Ваш надійний партнер" }
+        en: { amt: "Amount (Net/Gross):", rate: "VAT Rate (%):", vamt: "VAT Amount:", tot: "Total:", other: "Other Tools", foot: "© 2025 Smart-Converter Tools" },
+        uk: { amt: "Сума (нетто/брутто):", rate: "Ставка ПДВ (%):", vamt: "Сума ПДВ:", tot: "Разом:", other: "Інші інструменти", foot: "© 2025 Smart-Converter - Ваш надійний партнер" },
+        es: { amt: "Cantidad (Neto/Bruto):", rate: "Tasa de IVA (%):", vamt: "Importe del IVA:", tot: "Total:", other: "Otras herramientas", foot: "© 2025 Smart-Converter Tools" },
+        de: { amt: "Betrag (Netto/Brutto):", rate: "MwSt-Satz (%):", vamt: "MwSt-Betrag:", tot: "Gesamt:", other: "Andere Werkzeuge", foot: "© 2025 Smart-Converter Tools" }
     };
 
     function changeLang(l) {
@@ -99,6 +114,7 @@
         document.getElementById('lbl-rate').innerText = trans[l].rate;
         document.getElementById('lbl-vat-amt').innerText = trans[l].vamt;
         document.getElementById('lbl-total').innerText = trans[l].tot;
+        document.getElementById('txt-other-tools').innerText = trans[l].other;
         document.getElementById('txt-footer').innerText = trans[l].foot;
     }
 
