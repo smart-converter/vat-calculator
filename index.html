@@ -18,7 +18,6 @@
         
         .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; color: white; border-bottom: 1px solid var(--border-color); }
         .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 0.5px; }
-        
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
         
         .container { max-width: 800px; margin: 0 auto; padding: 5px; background: var(--bg-dark); min-height: 100vh; box-sizing: border-box; }
@@ -30,16 +29,15 @@
         .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: #64748b; font-size: 11px; min-height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
         
         .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; margin-bottom: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        
         .row { display: flex; align-items: center; margin-bottom: 18px; }
         .row label { width: 150px; font-size: 16px; color: #cbd5e1; font-weight: 700; line-height: 1.2; padding-right: 10px; }
-        
         .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; width: 100%; box-sizing: border-box; height: 48px; background: #fff; color: #000; outline: none; }
         .result-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
 
         .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
-        .tools-network h4 { margin: 0 0 12px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; }
+        .tools-network h4 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
         .tool-link-btn:hover { background: var(--accent-green); color: white; }
         
         footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
@@ -65,9 +63,7 @@
 
 <div class="container">
     <div id="tabs" class="tabs-grid"></div>
-
     <div class="ad-space">ADVERTISEMENT AREA</div>
-
     <div class="converter-box">
         <div class="row"><label id="lbl-amount">Amount:</label><input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()"></div>
         <div class="row"><label id="lbl-rate">VAT Rate %:</label><input type="number" id="v-rate" class="input-field" value="20" oninput="calc()"></div>
@@ -81,21 +77,22 @@
 
     <div class="tools-network">
         <h4 id="txt-other-tools">Other Elite Tools</h4>
-        <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
-        <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
-        <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
-        <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calculator</a>
-        <a href="https://smart-converter.github.io/loan-calculator/" class="tool-link-btn">Loan Calculator</a>
-        <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
-        <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+        <div class="tools-grid">
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calc</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calc</a>
+            <a href="https://smart-converter.github.io/loan-calculator/" class="tool-link-btn">Loan Calculator</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+        </div>
     </div>
-
     <div class="ad-space">ADVERTISEMENT AREA (Bottom)</div>
 </div>
 
 <footer>
     <div class="footer-info-block" id="footer-full-text"></div>
-    <p>© 2026 SmartVAT.io - Precision Tax Calculations</p>
+    <p>© 2026 SmartVAT.io</p>
     <div style="margin-top:10px;">
         <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</span>
         <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms of Use</span>
@@ -103,10 +100,7 @@
 </footer>
 
 <div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">×</span>
-        <div id="modalBody"></div>
-    </div>
+    <div class="modal-content"><span class="close-btn" onclick="closeModal()">×</span><div id="modalBody"></div></div>
 </div>
 
 <script>
@@ -114,28 +108,28 @@
         en: {
             amount: "Amount:", rate: "VAT Rate %:", net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:",
             other: "Other Elite Tools", cats: ["Add VAT", "Remove VAT"], privacy: "Privacy Policy", terms: "Terms of Use",
-            footer: "SmartVAT.io provides professional tax calculation tools for businesses and individuals worldwide.",
-            privText: "<h2>Privacy Policy</h2><p>Your financial data is processed locally and never stored on our servers.</p>",
-            termsText: "<h2>Terms of Use</h2><p>Calculations are for informational purposes. Verify results with a professional accountant.</p>"
+            footer: "SmartVAT.io provides professional tax calculation tools worldwide.",
+            privText: "<h2>Privacy</h2><p>Data stays on your device. We do not store any financial information.</p>",
+            termsText: "<h2>Terms</h2><p>Calculations are for informational purposes only. Consult a professional.</p>"
         },
         uk: {
-            amount: "Сума:", rate: "Ставка ПДВ %:", net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
-            other: "Інші професійні інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови використання",
-            footer: "SmartVAT.io надає професійні інструменти для розрахунку податків для бізнесу та приватних осіб.",
-            privText: "<h2>Конфіденційність</h2><p>Ваші дані обробляються локально і не зберігаються на наших серверах.</p>",
-            termsText: "<h2>Умови</h2><p>Розрахунки мають інформаційний характер. Звіряйте результати з бухгалтером.</p>"
+            amount: "Сума:", rate: "Ставка %:", net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
+            other: "Інші інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови",
+            footer: "SmartVAT.io надає професійні інструменти для розрахунку ПДВ.",
+            privText: "<h2>Конфіденційність</h2><p>Дані не збираються і не зберігаються.</p>",
+            termsText: "<h2>Умови</h2><p>Розрахунки мають ознайомчий характер.</p>"
         },
         es: {
-            amount: "Monto:", rate: "IVA %:", net: "Neto:", tax: "Importe IVA:", total: "Total:",
+            amount: "Monto:", rate: "IVA %:", net: "Neto:", tax: "IVA:", total: "Total:",
             other: "Otras herramientas", cats: ["Añadir IVA", "Quitar IVA"], privacy: "Privacidad", terms: "Términos",
-            footer: "SmartVAT.io ofrece herramientas profesionales de cálculo de impuestos.",
-            privText: "<h2>Privacidad</h2><p>No recopilamos sus datos financieros.</p>",
+            footer: "SmartVAT.io ofrece calculadoras de IVA profesionales.",
+            privText: "<h2>Privacidad</h2><p>Sin recolección de datos personales.</p>",
             termsText: "<h2>Términos</h2><p>Uso puramente informativo.</p>"
         },
         de: {
-            amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt-Betrag:", total: "Gesamtbetrag:",
-            other: "Andere Tools", cats: ["MwSt hinzufügen", "MwSt abziehen"], privacy: "Datenschutz", terms: "AGB",
-            footer: "SmartVAT.io bietet professionelle Steuerberechnungstools.",
+            amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt:", total: "Gesamt:",
+            other: "Andere Tools", cats: ["MwSt dazu", "MwSt weg"], privacy: "Datenschutz", terms: "AGB",
+            footer: "SmartVAT.io bietet präzise MwSt-Berechnungen.",
             privText: "<h2>Datenschutz</h2><p>Keine Speicherung Ihrer Daten.</p>",
             termsText: "<h2>AGB</h2><p>Nur zur Information.</p>"
         }
@@ -160,11 +154,8 @@
         document.getElementById('res-total-lbl').innerText = l.total;
         document.getElementById('txt-other-tools').innerText = l.other;
         document.getElementById('footer-full-text').innerText = l.footer;
-        
-        // Виправлення кнопок футера
         document.getElementById('link-privacy').innerText = l.privacy;
         document.getElementById('link-terms').innerText = l.terms;
-        
         initTabs();
     }
 
