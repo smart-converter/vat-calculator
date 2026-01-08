@@ -2,94 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="8boxzAKQUKKF8IEuVEX1wX8aUwcdch3Q11BgfGM3vkM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator Elite - Pro Tax Tool Online</title>
+    <title>VAT Calculator Pro - SmartTax.io</title>
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: #0f172a; color: #f8fafc; -webkit-font-smoothing: antialiased; }
-        .top-header { background-color: #166534; padding: 20px 15px; text-align: center; border-bottom: 1px solid #1e293b; }
-        .top-header h1 { margin: 0; font-size: 22px; font-weight: 700; color: #ffffff; text-transform: uppercase; }
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --accent-green: #22c55e;
+            --text-light: #f8fafc;
+            --border-color: #334155;
+        }
+
+        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); -webkit-font-smoothing: antialiased; color: var(--text-light); }
         
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; max-width: 500px; margin: 0 auto; }
-        .lang-btn { padding: 10px; text-align: center; background: #1e293b; border: 1px solid #334155; border-radius: 8px; cursor: pointer; font-size: 13px; color: #94a3b8; }
-        .lang-btn.active { background: #22c55e; color: #ffffff; border-color: #22c55e; font-weight: bold; }
-
-        .container { max-width: 500px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
-        .calc-section { background: #1e293b; padding: 25px; border-radius: 20px; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; color: white; border-bottom: 1px solid var(--border-color); }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 0.5px; }
         
-        label { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
-        .input-box { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 18px; font-weight: 700; box-sizing: border-box; margin-bottom: 20px; outline: none; }
-        .input-box:focus { border-color: #22c55e; }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5px; background: var(--bg-dark); min-height: 100vh; box-sizing: border-box; }
+        
+        .tabs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
+        .tab { background: #166534; color: #fff; height: 40px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; }
+        .tab.active { background: #fff; color: #166534; }
+        
+        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; margin-bottom: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .row { display: flex; align-items: center; margin-bottom: 12px; }
+        .row label { width: 120px; font-size: 15px; color: #94a3b8; font-weight: 700; }
+        
+        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; width: 100%; box-sizing: border-box; height: 48px; background: #fff; color: #000; outline: none; }
+        .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
 
-        .res-container { background: rgba(34, 197, 94, 0.05); border: 1px dashed #22c55e; border-radius: 12px; padding: 15px; }
-        .res-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; color: #94a3b8; }
-        .res-val { font-weight: 800; color: #22c55e; }
-        .res-total { border-top: 1px solid #334155; padding-top: 12px; margin-top: 8px; font-size: 20px; color: #fff; }
+        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: #64748b; font-size: 11px; min-height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+        
+        .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .tools-network h4 { margin: 0 0 12px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; }
+        .tool-link-btn:hover { background: var(--accent-green); color: white; }
 
-        .seo-content { max-width: 500px; margin: 20px auto; padding: 0 20px; line-height: 1.6; color: #64748b; font-size: 14px; }
-        .seo-content h2 { color: #22c55e; font-size: 18px; }
-
-        .network-tools { max-width: 500px; margin: 20px auto; text-align: center; padding: 15px; border-top: 1px solid #1e293b; }
-        .tool-link { display: inline-block; color: #22c55e; text-decoration: none; font-size: 13px; margin: 5px 10px; border: 1px solid #22c55e; padding: 5px 12px; border-radius: 20px; }
-
-        footer { padding: 20px; text-align: center; background: #0f172a; border-top: 1px solid #1e293b; }
-        .footer-link { color: #22c55e; text-decoration: none; cursor: pointer; font-weight: bold; font-size: 13px; margin: 0 10px; }
-
-        .modal { display: none; position: fixed; z-index: 99; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); }
-        .modal-content { background: #1e293b; margin: 15% auto; padding: 30px; width: 85%; max-width: 400px; border-radius: 20px; border: 1px solid #334155; position: relative; }
-        .close { position: absolute; right: 15px; top: 10px; font-size: 35px; font-weight: 900; color: #22c55e; cursor: pointer; }
+        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
+        .footer-info-block { border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 12px; padding: 18px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); }
+        .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; }
+        
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
+        .modal-content { background: var(--card-bg); margin: 5% auto; padding: 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid rgba(255, 255, 255, 0.3); color: white; }
+        .close-btn { position: absolute; right: 10px; top: 0; font-size: 38px; cursor: pointer; padding: 10px; }
     </style>
 </head>
 <body>
 
-<div class="top-header"><h1>VATCALC ELITE</h1></div>
-
-<div class="lang-grid">
-    <div class="lang-btn" onclick="changeLang('en')" id="btn-en">ENGLISH</div>
-    <div class="lang-btn" onclick="changeLang('uk')" id="btn-uk">УКРАЇНСЬКА</div>
-    <div class="lang-btn" onclick="changeLang('es')" id="btn-es">ESPAÑOL</div>
-    <div class="lang-btn" onclick="changeLang('de')" id="btn-de">DEUTSCH</div>
+<div class="top-header">
+    <h1>SmartVAT.io</h1>
+    <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
+        <option value="en">English</option>
+        <option value="uk">Українська</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+    </select>
 </div>
 
 <div class="container">
-    <div class="calc-section">
-        <label id="lbl-amount">Amount</label>
-        <input type="number" id="amount" class="input-box" value="1000" oninput="calculate()">
+    <div id="tabs" class="tabs-grid"></div>
+    <div class="ad-space">ADVERTISEMENT AREA</div>
+    
+    <div class="converter-box">
+        <div class="row">
+            <label id="lbl-amount">Amount:</label>
+            <input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()">
+        </div>
+        <div class="row">
+            <label id="lbl-rate">VAT Rate %:</label>
+            <input type="number" id="v-rate" class="input-field" value="20" oninput="calc()">
+        </div>
         
-        <label id="lbl-rate">VAT Rate (%)</label>
-        <input type="number" id="rate" class="input-box" value="20" oninput="calculate()">
-        
-        <label id="lbl-mode">Action</label>
-        <select id="mode" class="input-box" onchange="calculate()" style="appearance: none; background-color: #0f172a;">
-            <option value="add" id="opt-add">Add VAT (Net + Tax)</option>
-            <option value="sub" id="opt-sub">Remove VAT (Gross - Tax)</option>
-        </select>
-
-        <div class="res-container">
-            <div class="res-line"><span id="res-net-lbl">Net:</span> <span class="res-val" id="res-net">0.00</span></div>
-            <div class="res-line"><span id="res-tax-lbl">VAT:</span> <span class="res-val" id="res-tax">0.00</span></div>
-            <div class="res-line res-total"><span id="res-total-lbl">Total:</span> <span class="res-val" id="res-total">0.00</span></div>
+        <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+            <div class="row"><label id="res-net-lbl">Net:</label><input type="text" id="res-net" class="input-field res-field" readonly></div>
+            <div class="row"><label id="res-tax-lbl">VAT:</label><input type="text" id="res-tax" class="input-field res-field" readonly></div>
+            <div class="row"><label id="res-total-lbl">Total:</label><input type="text" id="res-total" class="input-field res-field" readonly></div>
         </div>
     </div>
-</div>
 
-<div class="seo-box seo-content" id="seo-box"></div>
-
-<div class="network-tools">
-    <p style="font-size: 12px; color: #475569; margin-bottom: 10px;" id="txt-tools">Other tools:</p>
-    <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link">Percentage Calculator</a>
-    <a href="https://smart-converter.github.io/unit-converter/" class="tool-link">Unit Converter</a>
+    <div class="tools-network">
+        <h4 id="txt-other-tools">Other Elite Tools</h4>
+        <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
+        <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
+        <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+        <a href="https://smart-converter.github.io/loan-calculator/" class="tool-link-btn">Loan Calculator</a>
+        <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calculator</a>
+        <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
+        <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+    </div>
+    
+    <div class="ad-space" style="margin-top: 20px;">ADVERTISEMENT AREA (Bottom)</div>
 </div>
 
 <footer>
-    <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy</span>
-    <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms</span>
-    <p id="txt-footer" style="color: #475569; font-size: 11px; margin-top: 15px;"></p>
+    <div class="footer-info-block" id="footer-full-text"></div>
+    <p>© 2026 SmartVAT.io - Global Tax Tools</p>
+    <div style="margin-top:10px;">
+        <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy</span>
+        <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms</span>
+    </div>
 </footer>
 
-<div id="siteModal" class="modal">
+<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close-btn" onclick="closeModal()">×</span>
         <div id="modalBody"></div>
     </div>
 </div>
@@ -97,88 +115,94 @@
 <script>
     const translations = {
         en: {
-            amount: "Amount", rate: "VAT Rate (%)", mode: "Action", add: "Add VAT (Net + Tax)", sub: "Remove VAT (Gross - Tax)",
-            net: "Net Amount:", tax: "VAT Amount:", total: "Total:", privacy: "Privacy Policy", terms: "Terms of Use",
-            footer: "© 2026 VATCALC ELITE", tools: "Our Elite Tools:",
-            privacyText: "<h3>Privacy Policy</h3><p>We do not collect or store any personal data. All calculations are performed locally in your browser.</p>",
-            termsText: "<h3>Terms of Use</h3><p>This tool is provided 'as is' for informational purposes. Accuracy is not guaranteed for official tax filing.</p>",
-            seo: `<h2>Advanced VAT Calculator Online</h2><p>Our tool provides instant value-added tax calculations for global business. Perfect for invoices, accounting, and shopping.</p>`
+            amount: "Amount:", rate: "VAT Rate %:", net: "Net:", tax: "VAT:", total: "Total:",
+            other: "Other Elite Tools", cats: ["Add VAT", "Remove VAT"],
+            footer: "SmartVAT.io provides precise tax calculation solutions for businesses worldwide. Perfect for quick accounting.",
+            priv: "<h2>Privacy</h2><p>No data collection. Calculations are local.</p>",
+            terms: "<h2>Terms</h2><p>Informational tool only. Consult a pro for taxes.</p>"
         },
         uk: {
-            amount: "Сума", rate: "Ставка ПДВ (%)", mode: "Операція", add: "Нарахувати ПДВ (На суму)", sub: "Вирахувати ПДВ (Із суми)",
-            net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Разом:", privacy: "Конфіденційність", terms: "Умови",
-            footer: "© 2026 VATCALC ELITE", tools: "Інші інструменти:",
-            privacyText: "<h3>Політика конфіденційності</h3><p>Ми не збираємо та не зберігаємо ваші дані. Усі розрахунки виконуються локально у вашому браузері.</p>",
-            termsText: "<h3>Умови використання</h3><p>Цей інструмент надається 'як є' для ознайомлювальних цілей. Дані не є офіційним податковим звітом.</p>",
-            seo: `<h2>Професійний калькулятор ПДВ</h2><p>Наш онлайн-сервіс дозволяє швидко нарахувати або вирахувати ПДВ. Ідеально підходить для бухгалтерів та підприємців.</p>`
+            amount: "Сума:", rate: "Ставка %:", net: "Без ПДВ:", tax: "ПДВ:", total: "Разом:",
+            other: "Інші професійні інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"],
+            footer: "SmartVAT.io надає точні рішення для розрахунку податків для бізнесу по всьому світу.",
+            priv: "<h2>Конфіденційність</h2><p>Ваші дані не збираються. Все працює в браузері.</p>",
+            terms: "<h2>Умови</h2><p>Тільки для ознайомлення. Зверніться до бухгалтера для податків.</p>"
         },
         es: {
-            amount: "Cantidad", rate: "IVA (%)", mode: "Acción", add: "Añadir IVA", sub: "Extraer IVA",
-            net: "Neto:", tax: "Cuota IVA:", total: "Total:", privacy: "Privacidad", terms: "Términos",
-            footer: "© 2026 VATCALC ELITE", tools: "Otras herramientas:",
-            privacyText: "<h3>Privacidad</h3><p>No recopilamos datos. Los cálculos se realizan en su navegador.</p>",
-            termsText: "<h3>Términos</h3><p>Herramienta informativa. No nos hacemos responsables de errores de cálculo.</p>",
-            seo: `<h2>Calculadora de IVA Profesional</h2><p>Calcule el IVA de forma sencilla para sus facturas y transacciones comerciales.</p>`
+            amount: "Monto:", rate: "IVA %:", net: "Neto:", tax: "IVA:", total: "Total:",
+            other: "Otras herramientas", cats: ["Añadir IVA", "Quitar IVA"],
+            footer: "SmartVAT.io ofrece soluciones precisas para el cálculo de impuestos comerciales.",
+            priv: "<h2>Privacidad</h2><p>Sin recolección de datos.</p>",
+            terms: "<h2>Términos</h2><p>Uso informativo solamente.</p>"
         },
         de: {
-            amount: "Betrag", rate: "MwSt (%)", mode: "Aktion", add: "MwSt dazu", sub: "MwSt weg",
-            net: "Netto:", tax: "MwSt Betrag:", total: "Gesamt:", privacy: "Datenschutz", terms: "AGB",
-            footer: "© 2026 VATCALC ELITE", tools: "Andere Werkzeuge:",
-            privacyText: "<h3>Datenschutz</h3><p>Es werden keine Daten gespeichert. Berechnungen erfolgen lokal im Browser.</p>",
-            termsText: "<h3>AGB</h3><p>Dieses Tool dient der Information. Nutzung auf eigene Gefahr.</p>",
-            seo: `<h2>Professioneller MwSt-Rechner</h2><p>Berechnen Sie die Mehrwertsteuer schnell und präzise für Ihr Unternehmen.</p>`
+            amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt:", total: "Gesamt:",
+            other: "Andere Werkzeuge", cats: ["MwSt hinzufügen", "MwSt entfernen"],
+            footer: "SmartVAT.io bietet präzise Steuerberechnungen für Unternehmen weltweit.",
+            priv: "<h2>Datenschutz</h2><p>Keine Datenspeicherung.</p>",
+            terms: "<h2>AGB</h2><p>Nur zur Information.</p>"
         }
     };
 
-    let curLang = localStorage.getItem('lang_vat_elite') || 'en';
+    let curLang = localStorage.getItem('lang_vat') || 'en';
+    let currentTab = 0;
 
-    function changeLang(lang) {
-        curLang = lang;
-        localStorage.setItem('lang_vat_elite', lang);
-        updateUI();
-    }
+    function changeLang(lang) { curLang = lang; localStorage.setItem('lang_vat', lang); updateUI(); }
 
     function updateUI() {
-        const l = translations[curLang] || translations['en'];
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        if(document.getElementById('btn-' + curLang)) document.getElementById('btn-' + curLang).classList.add('active');
-
+        const l = translations[curLang];
+        document.getElementById('langSelect').value = curLang;
         document.getElementById('lbl-amount').innerText = l.amount;
         document.getElementById('lbl-rate').innerText = l.rate;
-        document.getElementById('lbl-mode').innerText = l.mode;
-        document.getElementById('opt-add').innerText = l.add;
-        document.getElementById('opt-sub').innerText = l.sub;
         document.getElementById('res-net-lbl').innerText = l.net;
         document.getElementById('res-tax-lbl').innerText = l.tax;
         document.getElementById('res-total-lbl').innerText = l.total;
-        document.getElementById('seo-box').innerHTML = l.seo;
-        document.getElementById('txt-footer').innerText = l.footer;
-        document.getElementById('link-privacy').innerText = l.privacy;
-        document.getElementById('link-terms').innerText = l.terms;
-        document.getElementById('txt-tools').innerText = l.tools;
-        calculate();
+        document.getElementById('txt-other-tools').innerText = l.other;
+        document.getElementById('footer-full-text').innerText = l.footer;
+        initTabs();
     }
 
-    function calculate() {
-        const amt = parseFloat(document.getElementById('amount').value) || 0;
-        const rate = parseFloat(document.getElementById('rate').value) || 0;
-        const mode = document.getElementById('mode').value;
+    function initTabs() {
+        const t = document.getElementById('tabs'); t.innerHTML = '';
+        translations[curLang].cats.forEach((cat, i) => {
+            const d = document.createElement('div');
+            d.className = `tab ${i === currentTab ? 'active' : ''}`;
+            d.innerText = cat;
+            d.onclick = () => { currentTab = i; initTabs(); calc(); };
+            t.appendChild(d);
+        });
+        calc();
+    }
+
+    function calc() {
+        const amt = parseFloat(document.getElementById('v-amt').value) || 0;
+        const rate = parseFloat(document.getElementById('v-rate').value) || 0;
         let net, tax, total;
-        if (mode === 'add') { net = amt; tax = amt * (rate / 100); total = net + tax; }
-        else { total = amt; net = amt / (1 + (rate / 100)); tax = total - net; }
-        document.getElementById('res-net').innerText = net.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('res-tax').innerText = tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        document.getElementById('res-total').innerText = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+        if (currentTab === 0) { // Add VAT
+            net = amt;
+            tax = amt * (rate / 100);
+            total = net + tax;
+        } else { // Remove VAT
+            total = amt;
+            net = amt / (1 + (rate / 100));
+            tax = total - net;
+        }
+
+        document.getElementById('res-net').value = net.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('res-tax').value = tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('res-total').value = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
     function openPol(type) {
-        const l = translations[curLang] || translations['en'];
-        document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privacyText : l.termsText; 
+        const l = translations[curLang];
+        document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.priv : l.terms;
         document.getElementById('siteModal').style.display = 'block';
     }
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
-    window.onclick = function(event) { if (event.target == document.getElementById('siteModal')) closeModal(); }
+
     updateUI();
 </script>
 </body>
 </html>
+
