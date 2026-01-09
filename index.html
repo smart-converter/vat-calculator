@@ -3,63 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart VAT Calculator - Pro Tax Tool</title>
+    <title>Smart VAT Calculator - Quick & Accurate Tax Tool</title>
     <style>
         :root {
             --bg-dark: #0f172a;
             --card-bg: #1e293b;
             --accent-green: #22c55e;
             --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
             --border-color: #334155;
             --border-glow: rgba(255, 255, 255, 0.2);
         }
 
-        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); -webkit-font-smoothing: antialiased; color: var(--text-light); }
+        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); -webkit-font-smoothing: antialiased; color: var(--text-light); }
         
-        /* Header */
         .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; color: white; border-bottom: 1px solid var(--border-color); }
-        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 0.5px; }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; }
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
         
-        .container { max-width: 800px; margin: 0 auto; padding: 5px; background: var(--bg-dark); min-height: 100vh; box-sizing: border-box; }
+        .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; min-height: 100vh; }
         
-        /* Tabs */
-        .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
+        /* Layout Shift Prevention */
+        .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; min-height: 44px; }
         .tab { background: #166534; color: #fff; height: 44px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; }
         .tab.active { background: #fff; color: #166534; }
         
-        /* Ads */
-        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: #64748b; font-size: 11px; min-height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: var(--text-muted); font-size: 11px; min-height: 90px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-sizing: border-box; }
         
-        /* Main Calc */
-        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; margin-bottom: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
         .row { display: flex; align-items: center; margin-bottom: 18px; }
-        .row label { width: 150px; font-size: 16px; color: #cbd5e1; font-weight: 700; line-height: 1.2; padding-right: 10px; }
+        .row label { width: 150px; font-size: 16px; color: var(--text-muted); font-weight: 700; line-height: 1.2; }
         .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; width: 100%; box-sizing: border-box; height: 48px; background: #fff; color: #000; outline: none; }
         .result-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
 
-        /* Tools Network Grid */
+        .seo-content { padding: 15px; line-height: 1.7; font-size: 15px; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .seo-content h2 { color: var(--accent-green); font-size: 19px; margin: 20px 0 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
+
         .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
-        .tools-network h4 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .tools-network h4 { margin: 0 0 15px 0; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
-        .tool-link-btn:hover { background: var(--accent-green); color: white; }
-        
-        /* Центрування 7-ї кнопки */
-        .tool-link-btn:last-child:nth-child(odd) {
-            grid-column: 1 / span 2;
-            justify-self: center;
-            width: calc(50% - 5px);
-        }
-        
-        /* Footer */
-        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
-        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); }
+        .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
+
+        footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: var(--text-muted); }
+        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); text-align: left; }
         .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; }
         
-        /* Modal */
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
-        .modal-content { background: var(--card-bg); margin: 5% auto; padding: 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; }
+        .modal-content { background: var(--card-bg); margin: 5% auto; padding: 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; line-height: 1.6; }
         .close-btn { position: absolute; right: 10px; top: 0; font-size: 38px; cursor: pointer; padding: 10px; }
     </style>
 </head>
@@ -67,7 +58,7 @@
 
 <div class="top-header">
     <h1>SmartVAT.io</h1>
-    <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
+    <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect" aria-label="Select Language">
         <option value="en">English</option>
         <option value="uk">Українська</option>
         <option value="es">Español</option>
@@ -80,36 +71,38 @@
     <div class="ad-space">ADVERTISEMENT AREA</div>
     
     <div class="converter-box">
-        <div class="row"><label id="lbl-amount">Amount:</label><input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()"></div>
-        <div class="row"><label id="lbl-rate">VAT Rate %:</label><input type="number" id="v-rate" class="input-field" value="20" oninput="calc()"></div>
+        <div class="row"><label id="lbl-amount" for="v-amt">Amount:</label><input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()" aria-label="Base amount"></div>
+        <div class="row"><label id="lbl-rate" for="v-rate">VAT Rate %:</label><input type="number" id="v-rate" class="input-field" value="20" oninput="calc()" aria-label="Tax rate percentage"></div>
         
         <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            <div class="row"><label id="res-net-lbl">Net Amount:</label><input type="text" id="res-net" class="input-field result-field" readonly></div>
-            <div class="row"><label id="res-tax-lbl">VAT Amount:</label><input type="text" id="res-tax" class="input-field result-field" readonly></div>
-            <div class="row"><label id="res-total-lbl">Total Amount:</label><input type="text" id="res-total" class="input-field result-field" readonly></div>
+            <div class="row"><label id="res-net-lbl">Net Amount:</label><input type="text" id="res-net" class="input-field result-field" readonly aria-label="Net result"></div>
+            <div class="row"><label id="res-tax-lbl">VAT Amount:</label><input type="text" id="res-tax" class="input-field result-field" readonly aria-label="Tax result"></div>
+            <div class="row"><label id="res-total-lbl">Total Amount:</label><input type="text" id="res-total" class="input-field result-field" readonly aria-label="Total result"></div>
         </div>
     </div>
 
+    <div class="seo-content" id="seo-box"></div>
+
     <div class="tools-network">
-        <h4 id="txt-other-tools">Other Elite Tools</h4>
+        <h4 id="txt-other-tools">Elite Network Tools</h4>
         <div class="tools-grid">
-            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
-            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
-            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calc</a>
-            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calc</a>
-            <a href="https://smart-converter.github.io/loan-calculator/" class="tool-link-btn">Loan Calculator</a>
-            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
-            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur">Currency Converter</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc">Percentage Calc</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc">Discount Calc</a>
+            <a href="https://smart-converter.github.io/loan-calculator/" class="tool-link-btn" id="lnk-loan">Loan Calculator</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip">Tip Calculator</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi">BMI Calculator</a>
         </div>
     </div>
 </div>
 
 <footer>
     <div class="footer-info-block" id="footer-full-text"></div>
-    <p>© 2026 SmartVAT.io</p>
+    <p>© 2026 SmartVAT.io - Professional Financial Calculations</p>
     <div style="margin-top:10px;">
         <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</span>
-        <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms of Use</span>
+        <span class="footer-link" onclick="openPol('terms')" id="id-terms">Terms of Use</span>
     </div>
 </footer>
 
@@ -121,27 +114,39 @@
     const translations = {
         en: {
             amount: "Amount:", rate: "VAT Rate %:", net: "Net Amount:", tax: "VAT Amount:", total: "Total Amount:",
-            other: "Other Elite Tools", cats: ["Add VAT", "Remove VAT"], privacy: "Privacy Policy", terms: "Terms of Use",
-            footer: "SmartVAT.io provides professional tax calculation tools worldwide.",
-            privText: "<h2>Privacy</h2><p>Data stays on your device.</p>", termsText: "<h2>Terms</h2><p>For info only.</p>"
+            other: "Elite Network Tools", cats: ["Add VAT", "Remove VAT"], privacy: "Privacy Policy", terms: "Terms of Use",
+            unit: "Unit Converter", cur: "Currency Converter", perc: "Percentage Calc", disc: "Discount Calc", loan: "Loan Calculator", tip: "Tip Calculator", bmi: "BMI Calculator",
+            footer: "SmartVAT.io is a leading provider of high-precision tax calculation tools. Our VAT calculator is designed for businesses, freelancers, and consumers who need instant and accurate results. We cover standard and reduced rates for global regions, ensuring your accounting is always correct.",
+            seo: `<h2>Why Use Our VAT Calculator?</h2><p>Value Added Tax (VAT) can be tricky. Our tool allows you to <strong>add VAT</strong> to a net price or <strong>remove VAT</strong> from a gross total in one click. It is essential for invoice generation and financial planning.</p><h2>Global Tax Standards</h2><p>Whether you are dealing with UK VAT, European MwSt, or IVA, our flexible rate input makes it compatible with any tax jurisdiction worldwide.</p>`,
+            privText: "<h2>Privacy</h2><p>Your financial data is never stored on our servers. All calculations are processed locally.</p>", 
+            termsText: "<h2>Terms</h2><p>Our tools are for informational purposes. Verify results with a certified accountant for tax filings.</p>"
         },
         uk: {
             amount: "Сума:", rate: "Ставка %:", net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
-            other: "Інші інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови",
-            footer: "SmartVAT.io надає професійні інструменти для розрахунку ПДВ.",
-            privText: "<h2>Конфіденційність</h2><p>Дані не збираються.</p>", termsText: "<h2>Умови</h2><p>Тільки для ознайомлення.</p>"
+            other: "Інші професійні інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови",
+            unit: "Конвертер", cur: "Курси валют", perc: "Відсотки", disc: "Знижки", loan: "Кредити", tip: "Чайові", bmi: "Індекс маси",
+            footer: "SmartVAT.io — провідний розробник високоточних податкових інструментів. Наш калькулятор ПДВ створений для бізнесу, фрілансерів та споживачів, яким потрібні миттєві результати. Ми допомагаємо правильно розрахувати податки для будь-якої юрисдикції.",
+            seo: `<h2>Навіщо використовувати наш калькулятор ПДВ?</h2><p>Розрахунок податку на додану вартість може бути складним. Наш інструмент дозволяє <strong>нарахувати ПДВ</strong> на чисту ціну або <strong>виключити ПДВ</strong> із загальної суми одним кліком.</p><h2>Ідеально для бухгалтерів</h2><p>Цей інструмент незамінний при створенні інвойсів, плануванні бюджету та перевірці фінансової звітності.</p>`,
+            privText: "<h2>Конфіденційність</h2><p>Ваші фінансові дані не зберігаються. Розрахунки відбуваються у вашому браузері.</p>", 
+            termsText: "<h2>Умови</h2><p>Інструмент надається для ознайомлення. Перевіряйте результати в офіційній бухгалтерії.</p>"
         },
         es: {
             amount: "Monto:", rate: "IVA %:", net: "Neto:", tax: "IVA:", total: "Total:",
             other: "Otras herramientas", cats: ["Añadir IVA", "Quitar IVA"], privacy: "Privacidad", terms: "Términos",
-            footer: "SmartVAT.io ofrece calculadoras de IVA profesionales en todo el mundo.",
-            privText: "<h2>Privacidad</h2><p>Los datos permanecen en su dispositivo.</p>", termsText: "<h2>Términos</h2><p>Solo para fines informativos.</p>"
+            unit: "Convertidor", cur: "Moneda", perc: "Porcentajes", disc: "Descuentos", loan: "Préstamos", tip: "Propina", bmi: "IMC",
+            footer: "SmartVAT.io es un proveedor líder de herramientas de cálculo de impuestos de alta precisión. Nuestra calculadora de IVA está diseñada para empresas y autónomos que necesitan resultados precisos e instantáneos para su facturación diaria.",
+            seo: `<h2>¿Por qué usar nuestra calculadora de IVA?</h2><p>Calcular el Impuesto sobre el Valor Añadido es crucial para cualquier negocio. Con SmartVAT.io, puedes <strong>añadir IVA</strong> al precio neto o <strong>desglosar el IVA</strong> de un total bruto de forma rápida y sencilla.</p>`,
+            privText: "<h2>Privacidad</h2><p>No almacenamos sus datos financieros. Todo es procesado localmente.</p>", 
+            termsText: "<h2>Términos</h2><p>Uso informativo únicamente. Verifique sus impuestos con profesionales.</p>"
         },
         de: {
             amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt:", total: "Gesamt:",
-            other: "Andere Tools", cats: ["MwSt hinzufügen", "MwSt abziehen"], privacy: "Datenschutz", terms: "AGB",
-            footer: "SmartVAT.io bietet weltweit professionelle Tools zur Mehrwertsteuerberechnung.",
-            privText: "<h2>Datenschutz</h2><p>Daten verbleiben auf Ihrem Gerät.</p>", termsText: "<h2>AGB</h2><p>Nur zur Information.</p>"
+            other: "Andere Elite-Tools", cats: ["MwSt hinzufügen", "MwSt abziehen"], privacy: "Datenschutz", terms: "AGB",
+            unit: "Einheiten", cur: "Währung", perc: "Prozentrechner", disc: "Rabatt", loan: "Kreditrechner", tip: "Trinkgeld", bmi: "BMI Rechner",
+            footer: "SmartVAT.io ist ein führender Anbieter von hochpräzisen Steuerberechnungstools. Unser Mehrwertsteuerrechner ist für Unternehmen und Freiberufler konzipiert, die sofortige und genaue Ergebnisse für ihre Buchhaltung benötigen.",
+            seo: `<h2>Professioneller MwSt Rechner</h2><p>Egal ob Sie die <strong>Mehrwertsteuer hinzufügen</strong> oder aus einem Bruttobetrag <strong>herausrechnen</strong> wollen – unser Tool erledigt dies in Millisekunden. Perfekt für Rechnungen und Preiskalkulationen.</p>`,
+            privText: "<h2>Datenschutz</h2><p>Ihre Daten werden nicht gespeichert. Die Berechnung erfolgt in Ihrem Browser.</p>", 
+            termsText: "<h2>AGB</h2><p>Nur zu Informationszwecken. Bitte konsultieren Sie einen Steuerberater.</p>"
         }
     };
 
@@ -165,7 +170,17 @@
         document.getElementById('txt-other-tools').innerText = l.other;
         document.getElementById('footer-full-text').innerText = l.footer;
         document.getElementById('link-privacy').innerText = l.privacy;
-        document.getElementById('link-terms').innerText = l.terms;
+        document.getElementById('id-terms').innerText = l.terms;
+        document.getElementById('seo-box').innerHTML = l.seo;
+        
+        document.getElementById('lnk-unit').innerText = l.unit;
+        document.getElementById('lnk-cur').innerText = l.cur;
+        document.getElementById('lnk-perc').innerText = l.perc;
+        document.getElementById('lnk-disc').innerText = l.disc;
+        document.getElementById('lnk-loan').innerText = l.loan;
+        document.getElementById('lnk-tip').innerText = l.tip;
+        document.getElementById('lnk-bmi').innerText = l.bmi;
+        
         initTabs();
     }
 
