@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart VAT Calculator - Quick & Accurate Tax Tool</title>
+    <meta name="description" content="Calculate VAT easily with our professional tool. Add or remove VAT from any amount with custom rates. Fast, accurate, and free online tax calculator.">
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -23,7 +24,6 @@
         
         .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; min-height: 100vh; }
         
-        /* Layout Shift Prevention */
         .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; min-height: 44px; }
         .tab { background: #166534; color: #fff; height: 44px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; }
         .tab.active { background: #fff; color: #166534; }
@@ -71,13 +71,13 @@
     <div class="ad-space">ADVERTISEMENT AREA</div>
     
     <div class="converter-box">
-        <div class="row"><label id="lbl-amount" for="v-amt">Amount:</label><input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()" aria-label="Base amount"></div>
+        <div class="row"><label id="lbl-amount" for="v-amt">Amount:</label><input type="number" id="v-amt" class="input-field" value="1000" oninput="calc()" aria-label="Amount to calculate"></div>
         <div class="row"><label id="lbl-rate" for="v-rate">VAT Rate %:</label><input type="number" id="v-rate" class="input-field" value="20" oninput="calc()" aria-label="Tax rate percentage"></div>
         
         <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            <div class="row"><label id="res-net-lbl">Net Amount:</label><input type="text" id="res-net" class="input-field result-field" readonly aria-label="Net result"></div>
-            <div class="row"><label id="res-tax-lbl">VAT Amount:</label><input type="text" id="res-tax" class="input-field result-field" readonly aria-label="Tax result"></div>
-            <div class="row"><label id="res-total-lbl">Total Amount:</label><input type="text" id="res-total" class="input-field result-field" readonly aria-label="Total result"></div>
+            <div class="row"><label id="res-net-lbl">Net Amount:</label><input type="text" id="res-net" class="input-field result-field" readonly aria-label="Net amount result"></div>
+            <div class="row"><label id="res-tax-lbl">VAT Amount:</label><input type="text" id="res-tax" class="input-field result-field" readonly aria-label="VAT amount result"></div>
+            <div class="row"><label id="res-total-lbl">Total Amount:</label><input type="text" id="res-total" class="input-field result-field" readonly aria-label="Total amount result"></div>
         </div>
     </div>
 
@@ -99,7 +99,7 @@
 
 <footer>
     <div class="footer-info-block" id="footer-full-text"></div>
-    <p>© 2026 SmartVAT.io - Professional Financial Calculations</p>
+    <p>© 2026 SmartVAT.io - High Precision Tools</p>
     <div style="margin-top:10px;">
         <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</span>
         <span class="footer-link" onclick="openPol('terms')" id="id-terms">Terms of Use</span>
@@ -117,36 +117,36 @@
             other: "Elite Network Tools", cats: ["Add VAT", "Remove VAT"], privacy: "Privacy Policy", terms: "Terms of Use",
             unit: "Unit Converter", cur: "Currency Converter", perc: "Percentage Calc", disc: "Discount Calc", loan: "Loan Calculator", tip: "Tip Calculator", bmi: "BMI Calculator",
             footer: "SmartVAT.io is a leading provider of high-precision tax calculation tools. Our VAT calculator is designed for businesses, freelancers, and consumers who need instant and accurate results. We cover standard and reduced rates for global regions, ensuring your accounting is always correct.",
-            seo: `<h2>Why Use Our VAT Calculator?</h2><p>Value Added Tax (VAT) can be tricky. Our tool allows you to <strong>add VAT</strong> to a net price or <strong>remove VAT</strong> from a gross total in one click. It is essential for invoice generation and financial planning.</p><h2>Global Tax Standards</h2><p>Whether you are dealing with UK VAT, European MwSt, or IVA, our flexible rate input makes it compatible with any tax jurisdiction worldwide.</p>`,
-            privText: "<h2>Privacy</h2><p>Your financial data is never stored on our servers. All calculations are processed locally.</p>", 
-            termsText: "<h2>Terms</h2><p>Our tools are for informational purposes. Verify results with a certified accountant for tax filings.</p>"
+            seo: `<h2>Why Use Our VAT Calculator?</h2><p>Value Added Tax (VAT) can be tricky. Our tool allows you to <strong>add VAT</strong> to a net price or <strong>remove VAT</strong> from a gross total in one click. It is essential for invoice generation and financial planning.</p><h2>Global Tax Standards</h2><p>Whether you are dealing with UK VAT, European MwSt, or IVA, our flexible rate input makes it compatible with any tax jurisdiction worldwide. Save time and avoid manual calculation errors with our professional tool.</p>`,
+            privText: "<h2>Privacy</h2><p>Your financial data is never stored on our servers. All calculations are processed locally in your browser.</p>", 
+            termsText: "<h2>Terms</h2><p>Our tools are for informational purposes. Verify results with a certified accountant for official tax filings.</p>"
         },
         uk: {
             amount: "Сума:", rate: "Ставка %:", net: "Без ПДВ:", tax: "Сума ПДВ:", total: "Загальна сума:",
             other: "Інші професійні інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови",
             unit: "Конвертер", cur: "Курси валют", perc: "Відсотки", disc: "Знижки", loan: "Кредити", tip: "Чайові", bmi: "Індекс маси",
             footer: "SmartVAT.io — провідний розробник високоточних податкових інструментів. Наш калькулятор ПДВ створений для бізнесу, фрілансерів та споживачів, яким потрібні миттєві результати. Ми допомагаємо правильно розрахувати податки для будь-якої юрисдикції.",
-            seo: `<h2>Навіщо використовувати наш калькулятор ПДВ?</h2><p>Розрахунок податку на додану вартість може бути складним. Наш інструмент дозволяє <strong>нарахувати ПДВ</strong> на чисту ціну або <strong>виключити ПДВ</strong> із загальної суми одним кліком.</p><h2>Ідеально для бухгалтерів</h2><p>Цей інструмент незамінний при створенні інвойсів, плануванні бюджету та перевірці фінансової звітності.</p>`,
-            privText: "<h2>Конфіденційність</h2><p>Ваші фінансові дані не зберігаються. Розрахунки відбуваються у вашому браузері.</p>", 
-            termsText: "<h2>Умови</h2><p>Інструмент надається для ознайомлення. Перевіряйте результати в офіційній бухгалтерії.</p>"
+            seo: `<h2>Навіщо використовувати наш калькулятор ПДВ?</h2><p>Розрахунок податку на додану вартість може бути складним. Наш інструмент дозволяє <strong>нарахувати ПДВ</strong> на чисту ціну або <strong>виключити ПДВ</strong> із загальної суми одним кліком.</p><h2>Ідеально для бухгалтерів</h2><p>Цей інструмент незамінний при створенні інвойсів, плануванні бюджету та перевірці фінансової звітності. Надійний алгоритм гарантує точність до сотих одиниць.</p>`,
+            privText: "<h2>Конфіденційність</h2><p>Ваші фінансові дані не зберігаються. Розрахунки відбуваються прямо у вашому браузері.</p>", 
+            termsText: "<h2>Умови</h2><p>Інструмент надається для ознайомлення. Перевіряйте результати в офіційній бухгалтерії перед звітами.</p>"
         },
         es: {
             amount: "Monto:", rate: "IVA %:", net: "Neto:", tax: "IVA:", total: "Total:",
             other: "Otras herramientas", cats: ["Añadir IVA", "Quitar IVA"], privacy: "Privacidad", terms: "Términos",
             unit: "Convertidor", cur: "Moneda", perc: "Porcentajes", disc: "Descuentos", loan: "Préstamos", tip: "Propina", bmi: "IMC",
             footer: "SmartVAT.io es un proveedor líder de herramientas de cálculo de impuestos de alta precisión. Nuestra calculadora de IVA está diseñada para empresas y autónomos que necesitan resultados precisos e instantáneos para su facturación diaria.",
-            seo: `<h2>¿Por qué usar nuestra calculadora de IVA?</h2><p>Calcular el Impuesto sobre el Valor Añadido es crucial para cualquier negocio. Con SmartVAT.io, puedes <strong>añadir IVA</strong> al precio neto o <strong>desglosar el IVA</strong> de un total bruto de forma rápida y sencilla.</p>`,
-            privText: "<h2>Privacidad</h2><p>No almacenamos sus datos financieros. Todo es procesado localmente.</p>", 
-            termsText: "<h2>Términos</h2><p>Uso informativo únicamente. Verifique sus impuestos con profesionales.</p>"
+            seo: `<h2>¿Por qué usar nuestra calculadora de IVA?</h2><p>Calcular el Impuesto sobre el Valor Añadido es crucial para cualquier negocio. Con SmartVAT.io, puedes <strong>añadir IVA</strong> al precio neto o <strong>desglosar el IVA</strong> de un total bruto de forma rápida y sencilla.</p><h2>Estándares Globales de Impuestos</h2><p>Nuestro sistema es compatible con el IVA de España, México y otros países hispanohablantes. Evite errores costosos en su contabilidad utilizando nuestra interfaz optimizada para dispositivos móviles y escritorio.</p>`,
+            privText: "<h2>Privacidad</h2><p>No almacenamos sus datos financieros. Todo es procesado localmente en su navegador para su total seguridad y confidencialidad.</p>", 
+            termsText: "<h2>Términos</h2><p>Uso informativo únicamente. Verifique sus impuestos con profesionales certificados antes de realizar cualquier declaración oficial ante las autoridades.</p>"
         },
         de: {
             amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt:", total: "Gesamt:",
             other: "Andere Elite-Tools", cats: ["MwSt hinzufügen", "MwSt abziehen"], privacy: "Datenschutz", terms: "AGB",
             unit: "Einheiten", cur: "Währung", perc: "Prozentrechner", disc: "Rabatt", loan: "Kreditrechner", tip: "Trinkgeld", bmi: "BMI Rechner",
             footer: "SmartVAT.io ist ein führender Anbieter von hochpräzisen Steuerberechnungstools. Unser Mehrwertsteuerrechner ist für Unternehmen und Freiberufler konzipiert, die sofortige und genaue Ergebnisse für ihre Buchhaltung benötigen.",
-            seo: `<h2>Professioneller MwSt Rechner</h2><p>Egal ob Sie die <strong>Mehrwertsteuer hinzufügen</strong> oder aus einem Bruttobetrag <strong>herausrechnen</strong> wollen – unser Tool erledigt dies in Millisekunden. Perfekt für Rechnungen und Preiskalkulationen.</p>`,
-            privText: "<h2>Datenschutz</h2><p>Ihre Daten werden nicht gespeichert. Die Berechnung erfolgt in Ihrem Browser.</p>", 
-            termsText: "<h2>AGB</h2><p>Nur zu Informationszwecken. Bitte konsultieren Sie einen Steuerberater.</p>"
+            seo: `<h2>Professioneller MwSt Rechner</h2><p>Egal ob Sie die <strong>Mehrwertsteuer hinzufügen</strong> oder aus einem Bruttobetrag <strong>herausrechnen</strong> wollen – unser Tool erledigt dies in Millisekunden. Perfekt für Rechnungen und Preiskalkulationen.</p><h2>Globale Steuerkonformität</h2><p>Ob für die deutsche MwSt oder die österreichische USt – geben Sie einfach den gewünschten Steuersatz ein. Unser Rechner bietet höchste Präzision für Ihre täglichen geschäftlichen Anforderungen und Finanzplanungen.</p>`,
+            privText: "<h2>Datenschutz</h2><p>Ihre Daten werden nicht gespeichert. Die Berechnung erfolgt sicher in Ihrem Browser, ohne dass Informationen an externe Server gesendet werden.</p>", 
+            termsText: "<h2>AGB</h2><p>Diese Tools dienen nur zu Informationszwecken. Bitte konsultieren Sie einen qualifizierten Steuerberater für offizielle Steuererklärungen und Buchhaltung.</p>"
         }
     };
 
