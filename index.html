@@ -48,11 +48,9 @@
         .tools-network h2 { margin: 0 0 15px 0; color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; }
-        .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
         footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: var(--text-muted); }
         
-        /* ЖОРСТКА ФІКСАЦІЯ ШИРИНИ 480PX ДЛЯ ВИПРАВЛЕННЯ CLS ТА ВИГЛЯДУ */
         .footer-info-block { 
             border: 2px solid var(--border-glow); 
             border-radius: 12px; 
@@ -60,7 +58,7 @@
             background: rgba(255, 255, 255, 0.05); 
             text-align: left; 
             line-height: 1.6;
-            width: 95% !important;
+            width: 100% !important;
             max-width: 480px !important; 
             margin: 0 auto 15px auto !important; 
             display: block !important;
@@ -167,7 +165,7 @@
             other: "Інші професійні інструменти", cats: ["Нарахувати ПДВ", "Виключити ПДВ"], privacy: "Конфіденційність", terms: "Умови",
             unit: "Конвертер", cur: "Курси валют", perc: "Відсотки", disc: "Знижки", loan: "Кредити", tip: "Чайові", bmi: "Індекс маси",
             footer: "SmartVAT.io — провідний розробник високоточних податкових інструментів. Наш калькулятор ПДВ створений для бізнесу, фрілансерів та споживачів, яким потрібні миттєві результати. Ми допомагаємо правильно розрахувати податки для будь-якої юрисдикції.",
-            seo: `<h2>Навіщо використовувати наш калькулятор ПДВ?</h2><p>Розрахунок ПДВ може бути складним. Наш інструмент дозволяє <strong>нарахувати ПДВ</strong> на чисту ціну або <strong>виключити ПДВ</strong> із зальної суми одним кліком.</p><h2>Ідеально для бухгалтерії</h2><p>Цей інструмент незамінний при створенні інвойсів, плануванні бюджету та перевірці фінансової звітності.</p>`,
+            seo: `<h2>Навіщо використовувати наш калькулятор ПДВ?</h2><p>Розрахунок ПДВ може бути складним. Наш інструмент дозволяє <strong>нарахувати ПДВ</strong> на чисту ціну або <strong>виключити ПДВ</strong> із загальної суми одним кліком.</p><h2>Ідеально для бухгалтерії</h2><p>Цей інструмент незамінний при створенні інвойсів, плануванні бюджету та перевірці фінансової звітності.</p>`,
             privText: "<h2>Політика конфіденційності</h2><p>Ваші фінансові дані не зберігаються. Розрахунки відбуваються прямо у вашому браузері.</p>", 
             termsText: "<h2>Умови використання</h2><p>Інструмент надається для ознайомлення. Перевіряйте результати в офіційній бухгалтерії перед звітами.</p>"
         },
@@ -184,8 +182,8 @@
             amount: "Betrag:", rate: "MwSt %:", net: "Netto:", tax: "MwSt:", total: "Gesamt:",
             other: "Andere Elite-Tools", cats: ["MwSt hinzufügen", "MwSt abziehen"], privacy: "Datenschutz", terms: "AGB",
             unit: "Einheiten", cur: "Währung", perc: "Prozentrechner", disc: "Rabatt", loan: "Kreditrechner", tip: "Trinkgeld", bmi: "BMI Rechner",
-            footer: "SmartVAT.io ist ein führender Anbieter von hochpräzisen Steuerberechnungstools. Unser Mehrwertsteuerrechner liefert sofortige und genaue Ergebnisse für Ihre Buchhaltung.",
-            seo: `<h2>Professioneller MwSt Rechner</h2><p>Egal ob Sie die <strong>Mehrwertsteuer hinzufügen</strong> oder <strong>herausrechnen</strong> wollen – unser Tool erledigt dies in Millisekunden. Perfekt für Rechnungen.</p><h2>Globale Konformität</h2><p>Ob für die deutsche MwSt oder die österreichische USt – unser Rechner bietet höchste Präzision für Ihre Finanzplanungen.</p>`,
+            footer: "SmartVAT.io ist ein führender Anbieter von hochpräзisen Steuerberechnungstools. Unser Mehrwertsteuerrechner liefert sofortige und genaue Ergebnisse für Ihre Buchhaltung.",
+            seo: `<h2>Professioneller MwSt Rechner</h2><p>Egal ob Sie die <strong>Mehrwertsteuer hinzufügen</strong> oder <strong>herausrechnen</strong> wollen – unser Tool erledigt dies in Millisekunden. Perfekt für Rechnungen.</p><h2>Globale Konformität</h2><p>Ob für die deutsche MwSt oder die österreichische USt – unser Rechner bietet höchste Präзision für Ihre Finanzplanungen.</p>`,
             privText: "<h2>Datenschutzrichtlinie</h2><p>Ihre Daten werden nicht gespeichert. Die Berechnung erfolgt sicher in Ihrem Browser.</p>", 
             termsText: "<h2>Allgemeine Geschäftsbedingungen</h2><p>Diese Tools dienen nur zu Informationszwecken. Bitte konsultieren Sie einen Steuerberater.</p>"
         }
